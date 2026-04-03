@@ -576,6 +576,89 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#city-resolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        City Resolver
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="City Resolver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-actually-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it actually changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-does-not-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does not change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-admin_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About admin_level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundled-defaults-vs-your-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundled defaults vs your overrides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#want-to-improve-the-bundled-defaults-for-everyone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Want to improve the bundled defaults for everyone?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#database-connection-details" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1074,6 +1157,89 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#city-resolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        City Resolver
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="City Resolver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-actually-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it actually changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-does-not-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does not change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-admin_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About admin_level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundled-defaults-vs-your-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundled defaults vs your overrides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#want-to-improve-the-bundled-defaults-for-everyone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Want to improve the bundled defaults for everyone?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#database-connection-details" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1126,7 +1292,7 @@
 
 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
 <div class="section-intro">
-The Settings page is intentionally small. Most users only need to check the database connection, pick a schedule, and tune how aggressively processing should run.
+The Settings page is intentionally small. Most users only need to check the database connection, pick a schedule, and tune how aggressively processing should run. Country-specific city matching now lives on its own City Resolver page.
 </div>
 
 <p>For manual runs, coordinate testing, and reset tools, see <a href=".././using-the-app/">Using the App</a>.</p>
@@ -1181,6 +1347,86 @@ The Settings page is intentionally small. Most users only need to check the data
   </div>
 </div>
 
+<h2 id="city-resolver">City Resolver<a class="headerlink" href="#city-resolver" title="Permanent link">&para;</a></h2>
+<p>The City Resolver page lets you adjust how the app picks a city name when Overture returns several possible matches.</p>
+<p>It gives you:</p>
+<ul>
+<li>bundled default rules that ship with the app</li>
+<li>an optional global override</li>
+<li>country-specific overrides</li>
+<li>a searchable country picker</li>
+<li>simple up/down controls to change the order of preferred place types from the official Overture list</li>
+<li>a choice between:</li>
+<li>prefer the tighter match</li>
+<li>prefer the broader match</li>
+</ul>
+<p>This keeps the main Settings page simple while still giving you a way to fix countries where the default city result is not what you want.</p>
+<h3 id="what-it-actually-changes">What it actually changes<a class="headerlink" href="#what-it-actually-changes" title="Permanent link">&para;</a></h3>
+<p>The City Resolver only affects the <code>city</code> value.</p>
+<p>It is useful when the app finds the right general area, but chooses the wrong name for your taste. For example:</p>
+<ul>
+<li>it picks a district instead of the wider city</li>
+<li>it picks a very small local area instead of the municipality</li>
+<li>it picks something broader than you want</li>
+</ul>
+<h3 id="what-it-does-not-change">What it does not change<a class="headerlink" href="#what-it-does-not-change" title="Permanent link">&para;</a></h3>
+<p>The City Resolver does not download better data or invent missing places.</p>
+<p>It will not help if:</p>
+<ul>
+<li>the place you want is not in the Lookup results at all</li>
+<li>the airport name is winning and airport matching is still turned on</li>
+<li>the country match is wrong</li>
+</ul>
+<p>So before changing anything, use Lookup first and make sure the place you want is actually in the returned data.</p>
+<h3 id="recommended-workflow">Recommended workflow<a class="headerlink" href="#recommended-workflow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open the Lookup page and test a coordinate that gave you a bad city result.</li>
+<li>Look at <code>Resolved City</code>, <code>Raw Best Area</code>, and the candidate list.</li>
+<li>If the place you want is present, decide what to change:</li>
+<li>if the wrong kind of place won, change the preferred order</li>
+<li>if two similar places are competing, try broader or tighter matching</li>
+<li>if an airport name is winning, turn off airport matching first</li>
+<li>Add a country override only after you know the data supports the result you want.</li>
+<li>Run Lookup again and confirm the final output before processing your library.</li>
+</ol>
+<h3 id="about-admin_level">About <code>admin_level</code><a class="headerlink" href="#about-admin_level" title="Permanent link">&para;</a></h3>
+<p>Lookup shows <code>admin_level</code> because it can sometimes help explain why a result was chosen, but it is not a setting you edit directly.</p>
+<p>That is because:</p>
+<ul>
+<li>many results do not have a useful <code>admin_level</code></li>
+<li>the place type is usually more important than the number</li>
+<li><code>admin_level</code> alone does not solve every case</li>
+</ul>
+<p>So the controls on the City Resolver page stay simple:</p>
+<ul>
+<li>preferred place type order</li>
+<li>broader or tighter matching</li>
+</ul>
+<h3 id="bundled-defaults-vs-your-overrides">Bundled defaults vs your overrides<a class="headerlink" href="#bundled-defaults-vs-your-overrides" title="Permanent link">&para;</a></h3>
+<p>The app ships with built-in default rules. Your own settings sit on top of them:</p>
+<ul>
+<li>bundled global default</li>
+<li>bundled country-specific default, if present</li>
+<li>your optional global override</li>
+<li>your optional country override</li>
+</ul>
+<p>That means you only need to change the countries you care about.</p>
+<h3 id="want-to-improve-the-bundled-defaults-for-everyone">Want to improve the bundled defaults for everyone?<a class="headerlink" href="#want-to-improve-the-bundled-defaults-for-everyone" title="Permanent link">&para;</a></h3>
+<p>If you find a country setting that clearly works better, you can open a pull request.</p>
+<p>The bundled defaults currently live in:</p>
+<ul>
+<li><code>src/ImmichReverseGeo.Web/bundled-data/defaults/city-resolver-profiles.json</code></li>
+</ul>
+<p>A good pull request should include:</p>
+<ul>
+<li>the country ISO3 code</li>
+<li>one or more example coordinates</li>
+<li>the old result</li>
+<li>the new expected result</li>
+<li>a short explanation of why the new default is better</li>
+<li>Lookup evidence showing that the desired place is really in the returned data</li>
+</ul>
+<p>See the contributor notes in <a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/CONTRIBUTING.md#city-resolver-defaults"><code>CONTRIBUTING.md</code></a>.</p>
 <h2 id="database-connection-details">Database connection details<a class="headerlink" href="#database-connection-details" title="Permanent link">&para;</a></h2>
 <p>The database section in Settings is read-only and mainly there as a sanity check.</p>
 <ul>
