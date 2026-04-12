@@ -1206,6 +1206,9 @@ DB_DATABASE_NAME=immich
 <div class="highlight"><pre><span></span><code>http://localhost:8080
 </code></pre></div>
 <p>If port <code>8080</code> is already in use on your host, change the left side of the compose port mapping and open that port instead.</p>
+<p>If the container runs on a remote server, do not expose the UI publicly. Docker-published ports can bypass host firewall rules such as UFW. For a VPS, bind the published port to localhost and use SSH local port forwarding, a VPN, or a trusted reverse proxy with authentication:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span><span class="m">8080</span>:localhost:8080<span class="w"> </span>user@host
+</code></pre></div>
 <h2 id="4-test-one-coordinate">4. Test one coordinate<a class="headerlink" href="#4-test-one-coordinate" title="Permanent link">&para;</a></h2>
 <p>Use the Lookup page to confirm the basics before a full run:</p>
 <div class="step-grid">

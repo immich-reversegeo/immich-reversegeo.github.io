@@ -546,6 +546,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vps-and-firewall-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPS and firewall notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#runtime-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1093,6 +1104,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vps-and-firewall-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPS and firewall notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#runtime-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1180,7 +1202,7 @@
 <li>to run in the same compose project and Docker network as Immich</li>
 <li>a persistent <code>/config</code> volume for settings</li>
 <li>a persistent <code>/data</code> volume for downloaded Overture data and runtime state</li>
-<li>a free host port for the published web UI, with <code>8080</code> as the default example</li>
+<li>a free host port for the web UI, with <code>8080</code> as the default example</li>
 </ul>
 <p>Typical variables come from the shared <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code>DB_HOST=database
@@ -1193,6 +1215,19 @@ CONFIG_DIR=/config
 </code></pre></div>
 <p>Then start the stack:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<h2 id="vps-and-firewall-notes">VPS and firewall notes<a class="headerlink" href="#vps-and-firewall-notes" title="Permanent link">&para;</a></h2>
+<p>Do not expose the web UI publicly. Docker-published ports can bypass host firewall rules such as UFW, so do not rely on the host firewall alone to hide a broadly published <code>8080:8080</code> mapping on an internet-facing server.</p>
+<p>If you run Immich ReverseGeo on a VPS and only need local or SSH-forwarded access, bind the published port to localhost:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;127.0.0.1:8080:8080&quot;</span>
+<span class="w">  </span><span class="c1"># - &quot;[::1]:8080:8080&quot;</span>
+</code></pre></div>
+<p>Then use a private path such as SSH local port forwarding, a VPN, or a trusted reverse proxy with authentication:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span><span class="m">8080</span>:localhost:8080<span class="w"> </span>user@host
+</code></pre></div>
+<p>Then open:</p>
+<div class="highlight"><pre><span></span><code>http://localhost:8080
 </code></pre></div>
 <h2 id="runtime-notes">Runtime notes<a class="headerlink" href="#runtime-notes" title="Permanent link">&para;</a></h2>
 <ul>
