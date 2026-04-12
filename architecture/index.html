@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://immich-reversegeo.github.io/architecture/">
       
       
-        <link rel="prev" href="../using-the-app/">
+        <link rel="prev" href="../data-sources/">
       
       
         <link rel="next" href="../changelog/">
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/images/logo-mark.svg">
-      <meta name="generator" content="zensical-0.0.31">
+      <meta name="generator" content="zensical-0.0.32">
     
     
       
@@ -605,6 +605,36 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-sources/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4m6 14c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23zm0-4.55c-1.3.95-3.58 1.55-6 1.55s-4.7-.6-6-1.55V9.64c1.47.83 3.61 1.36 6 1.36s4.53-.53 6-1.36zM12 9C8.13 9 6 7.5 6 7s2.13-2 6-2 6 1.5 6 2-2.13 2-6 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1119,6 +1149,7 @@
 You do not need to understand the internals to use Immich ReverseGeo, but the overall shape is simple: the app reads coordinates from immich, matches them against built-in and downloaded location data, and writes the final place names back.
 </div>
 
+<p>For a plain-language explanation of the active geographic data sources, see <a href=".././data-sources/">Data Sources</a>.</p>
 <h2 id="main-components">Main components<a class="headerlink" href="#main-components" title="Permanent link">&para;</a></h2>
 <div class="feature-grid">
   <div class="card">
@@ -1140,8 +1171,7 @@ You do not need to understand the internals to use Immich ReverseGeo, but the ov
 <ol>
 <li>reads unprocessed assets from immich</li>
 <li>resolves bundled country</li>
-<li>ensures per-country Overture divisions cache exists</li>
-<li>resolves administrative areas from cached divisions using country-aware city selection rules</li>
+<li>resolves administrative areas from cached Overture divisions and optionally cached GADM country packages</li>
 <li>optionally queries bundled airport infrastructure</li>
 <li>writes city/state/country back to immich when a complete result is available</li>
 </ol>
@@ -1153,7 +1183,7 @@ You do not need to understand the internals to use Immich ReverseGeo, but the ov
   </div>
   <div class="card">
     <h3>Downloaded on demand</h3>
-    <p>Country-specific data is downloaded locally when needed for better state and city matching.</p>
+    <p>Country-specific Overture and optional GADM data is downloaded locally when needed for better state and city matching.</p>
   </div>
   <div class="card">
     <h3>Optional live lookup help</h3>
@@ -1203,7 +1233,7 @@ You do not need to understand the internals to use Immich ReverseGeo, but the ov
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../using-the-app/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Using the App">
+          <a href="../data-sources/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data Sources">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -1213,7 +1243,7 @@ You do not need to understand the internals to use Immich ReverseGeo, but the ov
                 Previous
               </span>
               <div class="md-ellipsis">
-                Using the App
+                Data Sources
               </div>
             </div>
           </a>

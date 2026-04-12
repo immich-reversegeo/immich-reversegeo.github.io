@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/images/logo-mark.svg">
-      <meta name="generator" content="zensical-0.0.31">
+      <meta name="generator" content="zensical-0.0.32">
     
     
       
@@ -573,6 +573,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Processing settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gadm-administrative-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GADM administrative areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-territory-fallback-families" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split-territory fallback families
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -776,6 +804,36 @@
     
   
     Using the App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-sources/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4m6 14c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23zm0-4.55c-1.3.95-3.58 1.55-6 1.55s-4.7-.6-6-1.55V9.64c1.47.83 3.61 1.36 6 1.36s4.53-.53 6-1.36zM12 9C8.13 9 6 7.5 6 7s2.13-2 6-2 6 1.5 6 2-2.13 2-6 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
   
 
     
@@ -1154,6 +1212,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Processing settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gadm-administrative-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GADM administrative areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-territory-fallback-families" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split-territory fallback families
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1325,6 +1411,9 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>when it runs, using simple presets or a custom cron expression</li>
 <li>batch size, delay, and parallelism</li>
 <li>whether airport infrastructure can override the city name</li>
+<li>whether GADM administrative areas are enabled as an optional source</li>
+<li>whether GADM should be preferred over cached Overture divisions</li>
+<li>whether split-territory GADM fallback families should be tried</li>
 <li>whether every asset is written to the log</li>
 </ul>
 <p>Most users should stay on the preset schedule options. Manual runs from the dashboard still work even when automatic scheduling is disabled.</p>
@@ -1345,8 +1434,39 @@ The Settings page is intentionally small. Most users only need to check the data
     <h3>Airport matching</h3>
     <p>Leave it on if airport names are useful to you. Turn it off if you prefer commune or city names for photos taken on airport grounds.</p>
   </div>
+  <div class="card">
+    <h3>Optional GADM source</h3>
+    <p>You can enable GADM as an extra administrative boundary source, either as a fallback behind Overture or as the preferred admin source.</p>
+  </div>
 </div>
 
+<h3 id="gadm-administrative-areas">GADM administrative areas<a class="headerlink" href="#gadm-administrative-areas" title="Permanent link">&para;</a></h3>
+<p>When enabled, GADM adds another country-level administrative boundary source for <code>state</code> and <code>city</code> matching.</p>
+<p>Recommended starting point:</p>
+<ul>
+<li>turn <code>Enable GADM administrative areas</code> on</li>
+<li>leave <code>Prefer GADM administrative results</code> off at first</li>
+<li>use Lookup to compare results before making GADM the primary admin source</li>
+</ul>
+<p>What it can help with:</p>
+<ul>
+<li>countries where Overture admin divisions are sparse or pick the wrong city-like name</li>
+<li>places where a more traditional admin-boundary dataset gives better municipality or state names</li>
+</ul>
+<p>What it does not fix by itself:</p>
+<ul>
+<li>wrong bundled country detection</li>
+<li>airport names winning when airport matching is still enabled</li>
+<li>missing places that are not present in either source</li>
+</ul>
+<h3 id="split-territory-fallback-families">Split-territory fallback families<a class="headerlink" href="#split-territory-fallback-families" title="Permanent link">&para;</a></h3>
+<p>The optional GADM territory fallback setting lets the app try a small related country family when a sovereign or mainland code may be too coarse.</p>
+<p>Examples include:</p>
+<ul>
+<li>Denmark, Greenland, and the Faroe Islands</li>
+<li>United Kingdom, Jersey, Guernsey, and the Isle of Man</li>
+</ul>
+<p>This is a targeted fallback, not a global scan of every possible territory.</p>
 <h2 id="city-resolver">City Resolver<a class="headerlink" href="#city-resolver" title="Permanent link">&para;</a></h2>
 <p>The City Resolver page lets you adjust how the app picks a city name when Overture returns several possible matches.</p>
 <p>It gives you:</p>
@@ -1444,7 +1564,7 @@ The Settings page is intentionally small. Most users only need to check the data
   </div>
   <div class="card">
     <h3>Geo resets are a real change</h3>
-    <p>The Reset Geo Data page under Data can reset reverse geo country, state, and city values for all assets, pasted asset GUIDs, or a selected location value before a rerun, so a database backup is strongly recommended first.</p>
+    <p>The Reset Immich Geo Data page under Data can reset reverse geo country, state, and city values for all assets, pasted asset GUIDs, or a selected location value before a rerun, so a database backup is strongly recommended first.</p>
   </div>
   <div class="card">
     <h3>Country downloads take space</h3>
@@ -1463,7 +1583,7 @@ and
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Clearing location data is a real metadata change</p>
-<p>The Reset Geo Data page does not just reset this app's local state. It can clear existing immich reverse geo <code>city</code>, <code>state</code>, and <code>country</code> fields in the database.</p>
+<p>The Reset Immich Geo Data page does not just reset this app's local state. It can clear existing immich reverse geo <code>city</code>, <code>state</code>, and <code>country</code> fields in the database.</p>
 <p>It does not touch any other immich metadata.</p>
 <p>Take a database backup before using it:
 <a href="https://docs.immich.app/administration/backup-and-restore/">Backup and Restore | Immich</a></p>

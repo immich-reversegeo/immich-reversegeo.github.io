@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/images/logo-mark.svg">
-      <meta name="generator" content="zensical-0.0.31">
+      <meta name="generator" content="zensical-0.0.32">
     
     
       
@@ -608,6 +608,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../data-sources/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4m6 14c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23zm0-4.55c-1.3.95-3.58 1.55-6 1.55s-4.7-.6-6-1.55V9.64c1.47.83 3.61 1.36 6 1.36s4.53-.53 6-1.36zM12 9C8.13 9 6 7.5 6 7s2.13-2 6-2 6 1.5 6 2-2.13 2-6 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
@@ -701,6 +731,17 @@
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2026-04-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-12
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#2026-04-03" class="md-nav__link">
@@ -1030,6 +1071,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#2026-04-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-12
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2026-04-03" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1083,6 +1135,16 @@
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
 <p>This is the public-facing release summary for Immich ReverseGeo.</p>
 <p>Technical implementation notes live in <a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/CHANGELOG.md">CHANGELOG.md</a>.</p>
+<h2 id="2026-04-12">2026-04-12<a class="headerlink" href="#2026-04-12" title="Permanent link">&para;</a></h2>
+<p>This release focuses on better administrative area matching and clearer data management.</p>
+<ul>
+<li>Optional GADM support can now be enabled as an extra source for state and city matching. Use <a href=".././using-the-app/#lookup">Lookup</a> first to compare Overture and GADM results, then enable it for processing if it improves your library. See <a href=".././configuration/#gadm-administrative-areas">GADM administrative areas</a>.</li>
+<li>Lookup now shows what it is doing while it runs, including when it is downloading or waiting for country data.</li>
+<li>The Data area now has one administrative cache table for downloaded Overture and GADM data. It shows the data source, country, row count, version, size, download time, and cache actions. See <a href=".././using-the-app/#data-tools">Data tools</a>.</li>
+<li>Split-territory GADM fallbacks can help in places where one country match may need related packages, such as Denmark with Greenland and the Faroe Islands, or the UK with Jersey, Guernsey, and the Isle of Man.</li>
+<li>A new <a href=".././data-sources/">Data Sources</a> page explains where the geographic data comes from, what each source is used for, what is built in or downloaded, and the important license notes.</li>
+<li>The reset page is now called <strong>Reset Immich Geo Data</strong> so it is clearer that it changes Immich reverse geo fields, not just this app's local cache.</li>
+</ul>
 <h2 id="2026-04-03">2026-04-03<a class="headerlink" href="#2026-04-03" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Added the City Resolver page so you can see the bundled defaults, change the global city matching behavior, and add per-country overrides when a country needs different city-like divisions.</li>
@@ -1091,7 +1153,7 @@
 <h2 id="2026-04-01">2026-04-01<a class="headerlink" href="#2026-04-01" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Added an option to turn off airport matching if you prefer normal city or commune names.</li>
-<li>Added the Reset Geo Data page so you can clear reverse geo <code>city</code>, <code>state</code>, and <code>country</code> values before rerunning processing.</li>
+<li>Added the Reset Immich Geo Data page so you can clear reverse geo <code>city</code>, <code>state</code>, and <code>country</code> values before rerunning processing.</li>
 </ul>
 <h2 id="2026-03-29">2026-03-29<a class="headerlink" href="#2026-03-29" title="Permanent link">&para;</a></h2>
 <ul>
