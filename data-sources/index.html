@@ -1348,6 +1348,7 @@
 </ul>
 <h2 id="downloaded-overture-administrative-caches">Downloaded Overture administrative caches<a class="headerlink" href="#downloaded-overture-administrative-caches" title="Permanent link">&para;</a></h2>
 <p>When the app needs better state and city matching, it downloads a per-country Overture administrative cache into <code>/data/overture-divisions/{ISO3}.db</code>.</p>
+<p>Downloads include separate Overture source codes for Saba, Sint Eustatius, Clipperton Island, and Jan Mayen in their corresponding country caches. Older affected caches refresh automatically the next time they are needed. This improves downloaded boundary coverage; it does not add boundaries or names missing from Overture. Use Lookup on a known coordinate to check the state and city result before processing your library. Country detection must also recognize the location before normal processing can use its cache.</p>
 <p>The app uses this source for:</p>
 <ul>
 <li>normal administrative area matching during processing</li>

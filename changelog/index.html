@@ -1201,7 +1201,12 @@
 <p>Technical implementation notes live in <a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/CHANGELOG.md">CHANGELOG.md</a>.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Fixed the app stopping while waiting for an infrequent custom schedule, such as an annual run.</li>
+<li>
+<p>Improved downloaded administrative coverage for Saba, Sint Eustatius, Clipperton Island, and Jan Mayen. Affected older caches refresh automatically when needed; other country caches remain usable.</p>
+</li>
+<li>
+<p>Fixed the app stopping while waiting for an infrequent custom schedule, such as an annual run.</p>
+</li>
 <li>Docker releases now have version tags for controlled upgrades. GitHub's designated latest stable release updates <code>latest</code>; older release retries and prereleases do not automatically change it. <code>edge</code> continues to follow development builds.</li>
 <li>
 <p>Development images now publish only after their build and automated checks pass.</p>
