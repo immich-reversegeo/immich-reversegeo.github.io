@@ -603,6 +603,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#low-memory-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Low-memory mode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gadm-administrative-areas" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1246,6 +1257,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#low-memory-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Low-memory mode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gadm-administrative-areas" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1457,6 +1479,7 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>whether processing runs automatically</li>
 <li>when it runs, using simple presets or a custom cron expression</li>
 <li>batch size, delay, and parallelism</li>
+<li>low-memory mode for hosts with limited RAM</li>
 <li>whether airport infrastructure can override the city name</li>
 <li>whether GADM administrative areas are enabled as an optional source</li>
 <li>whether GADM should be preferred over cached Overture divisions</li>
@@ -1487,6 +1510,19 @@ The Settings page is intentionally small. Most users only need to check the data
   </div>
 </div>
 
+<h3 id="low-memory-mode">Low-memory mode<a class="headerlink" href="#low-memory-mode" title="Permanent link">&para;</a></h3>
+<p>Enable <strong>Low-memory mode</strong> under Settings → Processing when RAM is limited, then save before starting a new run.</p>
+<p>The mode:</p>
+<ul>
+<li>processes one asset at a time, in batches of at most 25</li>
+<li>runs one expensive country download or remote query at a time, shared with Lookup</li>
+<li>uses one DuckDB worker and a 256 MiB buffer budget for remote queries and Overture cache creation</li>
+<li>reads matching country polygons from disk instead of retaining the worldwide country index in RAM</li>
+</ul>
+<p>Your saved batch size and parallelism stay unchanged and are used again when you disable the mode. Work already in progress finishes with its existing limits; the next processing run uses the new batch and worker limits.</p>
+<p>Expect slower processing and more disk reads. This is not a total RAM cap: the web app, geometry checks, and native libraries use additional memory. Temporary DuckDB spill files live under <code>/data/duckdb-tmp</code>. Memory shown by your host may stay elevated after a run while the runtime keeps freed memory available for reuse.</p>
+<p>Use Lookup on a few known coordinates first, then compare memory use during a processing pass. Compare the first pass that creates country caches separately from later passes that reuse them. This mode changes resource use, not location matching rules, and does not repair missing or incorrect boundary data.</p>
+<p>In both modes, processing checks skipped IDs one batch at a time rather than loading the entire skipped history into RAM.</p>
 <h3 id="gadm-administrative-areas">GADM administrative areas<a class="headerlink" href="#gadm-administrative-areas" title="Permanent link">&para;</a></h3>
 <p>When enabled, GADM adds another country-level administrative boundary source for <code>state</code> and <code>city</code> matching.</p>
 <p>Recommended starting point:</p>
