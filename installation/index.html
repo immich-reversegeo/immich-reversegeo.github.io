@@ -1276,7 +1276,7 @@ DB_DATABASE_NAME=immich
 <li>Releases tagged <code>v1.2.3</code> publish both <code>1.2.3</code> and <code>v1.2.3</code> image tags.</li>
 <li>Other stable releases retain their version tags without changing <code>latest</code>. Rerunning an older release does not automatically move <code>latest</code> backwards.</li>
 <li>Prereleases publish their full version tags, such as <code>1.2.3-rc.1</code>, without updating <code>latest</code>.</li>
-<li><code>edge</code> follows development builds from <code>master</code>.</li>
+<li><code>edge</code> follows development builds from <code>master</code> after the build, tests, and Docker build checks pass.</li>
 <li><code>sha-...</code> tags identify builds by commit.</li>
 </ul>
 <p>After changing the image version in your Compose file, run <code>docker compose pull immich-reversegeo</code> and <code>docker compose up -d immich-reversegeo</code>. Keep your existing <code>/config</code> and <code>/data</code> volumes.</p>

@@ -1202,8 +1202,9 @@
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Fixed the app stopping while waiting for an infrequent custom schedule, such as an annual run.</li>
+<li>Docker releases now have version tags for controlled upgrades. GitHub's designated latest stable release updates <code>latest</code>; older release retries and prereleases do not automatically change it. <code>edge</code> continues to follow development builds.</li>
 <li>
-<p>Docker releases now have version tags for controlled upgrades. GitHub's designated latest stable release updates <code>latest</code>; older release retries and prereleases do not automatically change it. <code>edge</code> continues to follow development builds.</p>
+<p>Development images now publish only after their build and automated checks pass.</p>
 </li>
 <li>
 <p>You can now reuse Immich's <code>DB_HOSTNAME</code> setting to connect to an external database. Existing <code>DB_HOST</code> settings continue to work and take precedence when nonblank.</p>
