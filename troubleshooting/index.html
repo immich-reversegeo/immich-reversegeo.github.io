@@ -885,6 +885,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#settings-cannot-be-read-or-saved" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Settings cannot be read or saved
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1154,6 +1165,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#settings-cannot-be-read-or-saved" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Settings cannot be read or saved
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1242,6 +1264,10 @@ throughput.</p>
 <ul>
 <li><a href="https://docs.immich.app/administration/backup-and-restore/">Backup and Restore | Immich</a></li>
 </ul>
+<h2 id="settings-cannot-be-read-or-saved">Settings cannot be read or saved<a class="headerlink" href="#settings-cannot-be-read-or-saved" title="Permanent link">&para;</a></h2>
+<p>If logs report that <code>settings.json</code> cannot be read, scheduled processing pauses and retries once a minute. The file is left unchanged; the app does not substitute default settings for a damaged file.</p>
+<p>Check that the <code>/config</code> volume is writable and restore <code>settings.json</code> from a known-good backup if its contents are damaged. Keep a copy of the damaged file while investigating. After restoring it, reload the Settings page and check the values before starting a run.</p>
+<p>If a save fails, the previous settings file remains available. Check volume permissions and free disk space, then retry the save.</p>
 
 
 
