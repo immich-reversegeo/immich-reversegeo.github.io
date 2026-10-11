@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Reverse geocoding companion for Immich photo assets">
+        <meta name="description" content="Improve Immich location names with a self-hosted companion. Preview known coordinates before processing your library.">
       
       
       
@@ -64,7 +64,19 @@
 
     
     
-  </head>
+  <meta property="og:type" content="website" />
+<meta property="og:title" content="Immich ReverseGeo" />
+<meta property="og:description" content="Improve Immich location names with a self-hosted companion. Preview known coordinates before processing your library." />
+<meta property="og:image" content="https://immich-reversegeo.github.io/assets/images/social/index.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://immich-reversegeo.github.io/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Immich ReverseGeo" />
+<meta property="twitter:description" content="Improve Immich location names with a self-hosted companion. Preview known coordinates before processing your library." />
+<meta property="twitter:image" content="https://immich-reversegeo.github.io/assets/images/social/index.png" />
+</head>
   
   
     
@@ -411,10 +423,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-people-use-it" class="md-nav__link">
+  <a href="#check-a-coordinate-before-processing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Why People Use It
+        Check a coordinate before processing
       </span>
     </span>
   </a>
@@ -422,32 +434,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#good-fits" class="md-nav__link">
+  <a href="#what-it-can-help-with" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Good Fits
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Features
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Architecture Overview
+        What it can help with
       </span>
     </span>
   </a>
@@ -1078,10 +1068,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-people-use-it" class="md-nav__link">
+  <a href="#check-a-coordinate-before-processing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Why People Use It
+        Check a coordinate before processing
       </span>
     </span>
   </a>
@@ -1089,32 +1079,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#good-fits" class="md-nav__link">
+  <a href="#what-it-can-help-with" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Good Fits
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Features
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Architecture Overview
+        What it can help with
       </span>
     </span>
   </a>
@@ -1158,7 +1126,17 @@
                 <a id="__skip" tabindex="-1"></a>
                 
                   
+  <button type="button" title="Copy as Markdown" aria-label="Copy as Markdown" class="md-content__button md-icon" data-md-copy-url="./index.md">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12z"/></svg>
+  </button>
 
+
+  
+    <a href="https://github.com/immich-reversegeo/immich-reversegeo/edit/master/docs/website/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
   
   
 
@@ -1183,82 +1161,18 @@ Immich ReverseGeo is a self-hosted companion for <a href="https://immich.app">im
   <a class="md-button" href="https://github.com/immich-reversegeo/immich-reversegeo">GitHub</a>
 </div>
 
-<h2 id="why-people-use-it">Why People Use It<a class="headerlink" href="#why-people-use-it" title="Permanent link">&para;</a></h2>
-<div class="highlight-grid">
-  <div class="card">
-    <h3>Better place names</h3>
-    <p>Improves country, state, and city names when immich’s built-in result is too rough for the photo.</p>
-  </div>
-  <div class="card">
-    <h3>Tricky places handled better</h3>
-    <p>Often works better around coastlines, islands, border areas, and other places where simple matching falls short.</p>
-  </div>
-  <div class="card">
-    <h3>Smarter airport matching</h3>
-    <p>Can recognize airport areas more accurately, so airport photos can resolve to the airport itself when that is the better fit.</p>
-  </div>
-</div>
-
-<h2 id="good-fits">Good Fits<a class="headerlink" href="#good-fits" title="Permanent link">&para;</a></h2>
-<div class="section-intro">
-Immich ReverseGeo is a strong fit if your photos already have GPS coordinates and you want cleaner, more useful location names in a self-hosted setup.
-</div>
-
-<div class="feature-grid">
-  <div class="card">
-    <h3>Large libraries</h3>
-    <p>Useful when many assets already have coordinates but the place names are missing or low quality.</p>
-  </div>
-  <div class="card">
-    <h3>Self-hosted workflows</h3>
-    <p>Designed for repeatable local processing instead of depending on a third-party geocoding API at run time.</p>
-  </div>
-  <div class="card">
-    <h3>Careful rollouts</h3>
-    <p>Lets you test individual coordinates first, then process the whole library once the results look right.</p>
-  </div>
-</div>
-
-<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
-<div class="feature-grid">
-  <div class="card">
-    <h3>immich integration</h3>
-    <p>Reads your existing photo coordinates and writes improved location names back into immich.</p>
-  </div>
-  <div class="card">
-    <h3>Better matching</h3>
-    <p>Uses built-in location data plus extra country downloads when needed.</p>
-  </div>
-  <div class="card">
-    <h3>Web UI</h3>
-    <p>Change settings, test coordinates, manage downloads, and run processing manually.</p>
-  </div>
-  <div class="card">
-    <h3>Preview before processing</h3>
-    <p>See why a specific coordinate resolves the way it does before you process your full library.</p>
-  </div>
-</div>
-
-<h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
-<div class="feature-grid">
-  <div class="card">
-    <h3>immich database</h3>
-    <p>Photo coordinates are read from here, and improved location names are written back here.</p>
-  </div>
-  <div class="card">
-    <h3>Immich ReverseGeo app</h3>
-    <p>The web app handles settings, processing, lookups, and download management.</p>
-  </div>
-  <div class="card">
-    <h3>Built-in data</h3>
-    <p>Used for country matching and airport matching right away.</p>
-  </div>
-  <div class="card">
-    <h3>Downloaded data</h3>
-    <p>Extra country data is downloaded when needed for better state and city matching.</p>
-  </div>
-</div>
-
+<h2 id="check-a-coordinate-before-processing">Check a coordinate before processing<a class="headerlink" href="#check-a-coordinate-before-processing" title="Permanent link">&para;</a></h2>
+<p>Open <strong>Lookup</strong>, paste coordinates from a photo you know, and inspect the country, state, city, and matching sources before running against your library. Lookup previews location names without updating Immich assets; it may download country data when needed.</p>
+<p><a class="glightbox" data-title="Coordinate Lookup with an example coordinate" data-type="image" href="assets/screenshots/lookup.png"><img alt="Coordinate Lookup with an example coordinate" class="doc-screenshot on-glb" src="assets/screenshots/lookup.png" /></a></p>
+<h2 id="what-it-can-help-with">What it can help with<a class="headerlink" href="#what-it-can-help-with" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Missing or overly broad location names on photos that already have GPS coordinates.</li>
+<li>Matching around coastlines, islands, administrative boundaries, and airport areas.</li>
+<li>Repeatable processing with locally cached geographic data.</li>
+</ul>
+<p>Results depend on the available source data. It cannot add missing GPS coordinates or guarantee a better name for every point. Compare known locations in Lookup first, then choose the settings that fit your library.</p>
+<p>To replace existing location names, back up the database and clear the affected assets' location fields before reprocessing. See <a href="./getting-started/#5-start-manual-processing">Start manual processing</a> for the workflow.</p>
+<p>See <a href="./using-the-app/">Using the App</a> for the workflow and <a href="./data-sources/">Data Sources</a> for coverage and licence limits.</p>
 <h2 id="before-you-run-it-on-real-data">Before You Run It On Real Data<a class="headerlink" href="#before-you-run-it-on-real-data" title="Permanent link">&para;</a></h2>
 <ul>
 <li>It needs direct access to your immich database.</li>
@@ -1321,6 +1235,8 @@ and
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1392,7 +1308,7 @@ and
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["navigation.instant","navigation.instant.progress","navigation.footer","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","content.code.copy","toc.follow","search.suggest","search.highlight"],"redirect":null,"search":"./assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["navigation.instant","navigation.instant.progress","navigation.footer","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","content.action.edit","content.action.copy","content.tabs.link","content.code.copy","toc.follow","search.suggest","search.highlight"],"redirect":null,"search":"./assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="./assets/javascripts/bundle.8b1c90bd.min.js"></script>

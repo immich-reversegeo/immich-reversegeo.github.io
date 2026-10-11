@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Reverse geocoding companion for Immich photo assets">
+        <meta name="description" content="Install Immich ReverseGeo alongside Immich with separate settings and data volumes and private UI access.">
       
       
       
@@ -66,7 +66,19 @@
 
     
     
-  </head>
+  <meta property="og:type" content="website" />
+<meta property="og:title" content="Installation - Immich ReverseGeo" />
+<meta property="og:description" content="Install Immich ReverseGeo alongside Immich with separate settings and data volumes and private UI access." />
+<meta property="og:image" content="https://immich-reversegeo.github.io/assets/images/social/installation.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://immich-reversegeo.github.io/installation/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Installation - Immich ReverseGeo" />
+<meta property="twitter:description" content="Install Immich ReverseGeo alongside Immich with separate settings and data volumes and private UI access." />
+<meta property="twitter:image" content="https://immich-reversegeo.github.io/assets/images/social/installation.png" />
+</head>
   
   
     
@@ -539,10 +551,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preferred-setup" class="md-nav__link">
+  <a href="#choose-your-compose-setup" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Preferred setup
+        Choose your Compose setup
       </span>
     </span>
   </a>
@@ -1089,10 +1101,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preferred-setup" class="md-nav__link">
+  <a href="#choose-your-compose-setup" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Preferred setup
+        Choose your Compose setup
       </span>
     </span>
   </a>
@@ -1147,7 +1159,17 @@
                 <a id="__skip" tabindex="-1"></a>
                 
                   
+  <button type="button" title="Copy as Markdown" aria-label="Copy as Markdown" class="md-content__button md-icon" data-md-copy-url="./index.md">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12z"/></svg>
+  </button>
 
+
+  
+    <a href="https://github.com/immich-reversegeo/immich-reversegeo/edit/master/docs/website/installation.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
   
   
 
@@ -1162,16 +1184,11 @@
 <p>Official guide:
 <a href="https://docs.immich.app/administration/backup-and-restore/">Backup and Restore | Immich</a></p>
 </div>
-<h2 id="preferred-setup">Preferred setup<a class="headerlink" href="#preferred-setup" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Add the service to your existing Immich <code>docker-compose.yml</code>.</li>
-<li>Reuse the same <code>.env</code> file that already contains your Immich database settings.</li>
-<li>Keep <code>/config</code> and <code>/data</code> persisted with Docker volumes.</li>
-<li>No extra Docker network configuration is needed when the service lives in the same compose project as Immich.</li>
-</ul>
-<p>Reference file:
-<a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/docker-compose.yml">docker-compose.yml</a></p>
-<p>Copy/paste snippet:</p>
+<h2 id="choose-your-compose-setup">Choose your Compose setup<a class="headerlink" href="#choose-your-compose-setup" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Existing Immich stack (recommended)</label><label for="__tabbed_1_2">Separate Compose stack</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Add the service and volume declarations below to your existing Immich Compose file. Reuse its <code>.env</code> file and default network. Keep <code>/config</code> and <code>/data</code> persisted separately.</p>
 <div class="highlight"><span class="filename">docker-compose.yml</span><pre><span></span><code><span class="c1"># docker-compose.yml</span>
 <span class="c1"># Add this service to your existing Immich docker-compose.yml.</span>
 <span class="nt">services</span><span class="p">:</span>
@@ -1195,15 +1212,25 @@
 <span class="w">  </span><span class="nt">reversegeo-config</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">reversegeo-data</span><span class="p">:</span>
 </code></pre></div>
-<p>This service expects:</p>
-<ul>
-<li>the same database connection values Immich already uses</li>
-<li>to run in the same compose project and Docker network as Immich</li>
-<li>a persistent <code>/config</code> volume for settings</li>
-<li>a persistent <code>/data</code> volume for downloaded Overture data and runtime state</li>
-<li>a free host port for the web UI, with <code>8080</code> as the default example</li>
-<li>about 2 GB of memory, set by <code>mem_limit</code> in the snippet above</li>
-</ul>
+<p>Start only Immich ReverseGeo:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>immich-reversegeo
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Save the same service snippet in a separate directory and provide an <code>.env</code> file with your Immich database connection values. Join the existing Immich network by adding this section to that Compose file:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">default</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">immich_default</span>
+</code></pre></div>
+<p>Replace <code>immich_default</code> with your actual Immich network name. The database hostname must be reachable on that network. You can inspect available networks with <code>docker network ls</code>.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>immich-reversegeo
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Reference file: <a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/docker-compose.yml">docker-compose.yml</a>.</p>
+<p>Both setups need about 2 GB of memory, as set by <code>mem_limit</code> in the service snippet.</p>
 <div class="admonition note">
 <p class="admonition-title">Why the memory limit is there</p>
 <p>The bundled country boundary data is held in memory while processing runs and uses several hundred
@@ -1212,19 +1239,15 @@ into account. Large country caches and high parallelism can increase peak memory
 <p>Do not lower it much below <code>2g</code>. A limit under the working set makes the container fail
 immediately instead of running. Raising it is fine.</p>
 </div>
-<p>Typical variables come from the shared <code>.env</code> file:</p>
+<p>Both setups need the database connection values from Immich:</p>
 <div class="highlight"><pre><span></span><code>DB_HOSTNAME=database
 DB_PORT=5432
 DB_USERNAME=postgres
 DB_PASSWORD=...
 DB_DATABASE_NAME=immich
-DATA_DIR=/data
-CONFIG_DIR=/config
 </code></pre></div>
-<p>Use <code>DB_HOSTNAME</code> from Immich's <code>.env</code> file, including when connecting to an external database. Existing <code>DB_HOST</code> settings remain supported and take precedence if both are set. If neither has a nonblank value, the host defaults to <code>database</code>.</p>
-<p>Then start the stack:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
+<p>Use <code>DB_HOSTNAME</code> from Immich's <code>.env</code> file, including when connecting to an external database. A nonblank <code>DB_HOST</code> takes precedence over <code>DB_HOSTNAME</code> for existing installations. If <code>DB_HOST</code> is empty or contains only spaces, the app uses <code>DB_HOSTNAME</code>. If neither has a nonblank value, the host defaults to <code>database</code>.</p>
+<p>The example publishes the UI on host port <code>8080</code>. Change the left side of the port mapping if it is already in use. Do not expose the UI publicly; see the private-access options below.</p>
 <h2 id="vps-and-firewall-notes">VPS and firewall notes<a class="headerlink" href="#vps-and-firewall-notes" title="Permanent link">&para;</a></h2>
 <p>Do not expose the web UI publicly. Docker-published ports can bypass host firewall rules such as UFW, so do not rely on the host firewall alone to hide a broadly published <code>8080:8080</code> mapping on an internet-facing server.</p>
 <p>If you run Immich ReverseGeo on a VPS and only need local or SSH-forwarded access, bind the published port to localhost:</p>
@@ -1272,6 +1295,8 @@ CONFIG_DIR=/config
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1357,7 +1382,7 @@ CONFIG_DIR=/config
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.footer","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","content.code.copy","toc.follow","search.suggest","search.highlight"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.footer","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","content.action.edit","content.action.copy","content.tabs.link","content.code.copy","toc.follow","search.suggest","search.highlight"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.8b1c90bd.min.js"></script>

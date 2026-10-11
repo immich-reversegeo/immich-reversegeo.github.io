@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Reverse geocoding companion for Immich photo assets">
+        <meta name="description" content="Set up Immich ReverseGeo with Docker, check a coordinate, and prepare your first processing run.">
       
       
       
@@ -66,7 +66,19 @@
 
     
     
-  </head>
+  <meta property="og:type" content="website" />
+<meta property="og:title" content="Getting Started - Immich ReverseGeo" />
+<meta property="og:description" content="Set up Immich ReverseGeo with Docker, check a coordinate, and prepare your first processing run." />
+<meta property="og:image" content="https://immich-reversegeo.github.io/assets/images/social/getting-started.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://immich-reversegeo.github.io/getting-started/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Getting Started - Immich ReverseGeo" />
+<meta property="twitter:description" content="Set up Immich ReverseGeo with Docker, check a coordinate, and prepare your first processing run." />
+<meta property="twitter:image" content="https://immich-reversegeo.github.io/assets/images/social/getting-started.png" />
+</head>
   
   
     
@@ -543,10 +555,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-run-a-small-processing-pass" class="md-nav__link">
+  <a href="#5-start-manual-processing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        5. Run a small processing pass
+        5. Start manual processing
       </span>
     </span>
   </a>
@@ -1122,10 +1134,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-run-a-small-processing-pass" class="md-nav__link">
+  <a href="#5-start-manual-processing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        5. Run a small processing pass
+        5. Start manual processing
       </span>
     </span>
   </a>
@@ -1147,7 +1159,17 @@
                 <a id="__skip" tabindex="-1"></a>
                 
                   
+  <button type="button" title="Copy as Markdown" aria-label="Copy as Markdown" class="md-content__button md-icon" data-md-copy-url="./index.md">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12z"/></svg>
+  </button>
 
+
+  
+    <a href="https://github.com/immich-reversegeo/immich-reversegeo/edit/master/docs/website/getting-started.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
   
   
 
@@ -1194,16 +1216,17 @@ DB_DATABASE_NAME=immich
 <li><code>/config</code> for settings</li>
 <li><code>/data</code> for downloaded country data</li>
 </ul>
-<p>You can either:</p>
-<ul>
-<li>add the <code>immich-reversegeo</code> service to your existing Immich compose file</li>
-</ul>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<p>Add the service to your existing Immich Compose file. See <a href=".././installation/">Installation</a> for the snippet or a separate-stack setup.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>immich-reversegeo
 </code></pre></div>
 <h2 id="3-open-the-ui">3. Open the UI<a class="headerlink" href="#3-open-the-ui" title="Permanent link">&para;</a></h2>
 <p>Default container URL:</p>
 <div class="highlight"><pre><span></span><code>http://localhost:8080
 </code></pre></div>
+<details class="info">
+<summary>Which computer does localhost refer to?</summary>
+<p><code>localhost</code> means the computer running your browser. If Docker runs on another machine, use a private connection to that machine, such as the SSH tunnel below.</p>
+</details>
 <p>If port <code>8080</code> is already in use on your host, change the left side of the compose port mapping and open that port instead.</p>
 <p>If the container runs on a remote server, do not expose the UI publicly. Docker-published ports can bypass host firewall rules such as UFW. For a VPS, bind the published port to localhost and use SSH local port forwarding, a VPN, or a trusted reverse proxy with authentication:</p>
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span><span class="m">8080</span>:localhost:8080<span class="w"> </span>user@host
@@ -1225,10 +1248,10 @@ DB_DATABASE_NAME=immich
   </div>
 </div>
 
-<h2 id="5-run-a-small-processing-pass">5. Run a small processing pass<a class="headerlink" href="#5-run-a-small-processing-pass" title="Permanent link">&para;</a></h2>
-<p>Use <code>Run Now</code> from the Dashboard for your first manual pass. Start with a conservative batch size first and confirm the resulting location names look right in immich before scaling up.</p>
-<p>If you want to start from a clean slate, the Reset Immich Geo Data page under Data can clear existing reverse geo <code>city</code>, <code>state</code>, and <code>country</code> values in immich before reprocessing.</p>
-<p>You can reset all reverse geo data, paste specific asset GUIDs to reset only those items, or reset everything that currently matches a selected city, state, or country.</p>
+<h2 id="5-start-manual-processing">5. Start manual processing<a class="headerlink" href="#5-start-manual-processing" title="Permanent link">&para;</a></h2>
+<p>After checking known coordinates in Lookup, use <code>Run Now</code> from the Dashboard for your first manual pass. A smaller batch size reduces work per batch; it does not limit the total number of assets in the run. Inspect the resulting location names in Immich and use <code>Cancel</code> if you need to stop processing.</p>
+<p>Processing selects GPS-tagged assets only when both the city and country are missing (stored as <code>NULL</code> in the database). Assets with an existing city or country are not selected, even if the other value is missing.</p>
+<p>To correct existing location names, first back up the Immich database. Use <code>Reset Single Item(s)</code> or <code>Reset Specific Locations</code> on the Reset Immich Geo Data page to clear only the affected assets, then run processing again. These actions clear all three location fields—city, state, and country—for the selected assets. See <a href=".././using-the-app/#data-tools">Data tools</a> for the available reset actions.</p>
 <p>For more on the UI after setup, see <a href=".././using-the-app/">Using the App</a>.</p>
 
 
@@ -1252,6 +1275,8 @@ DB_DATABASE_NAME=immich
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1337,7 +1362,7 @@ DB_DATABASE_NAME=immich
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.footer","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","content.code.copy","toc.follow","search.suggest","search.highlight"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.footer","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","content.action.edit","content.action.copy","content.tabs.link","content.code.copy","toc.follow","search.suggest","search.highlight"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.8b1c90bd.min.js"></script>
