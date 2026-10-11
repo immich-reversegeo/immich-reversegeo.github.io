@@ -562,6 +562,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#image-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Image versions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vps-and-firewall-notes" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1112,6 +1123,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#image-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Image versions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vps-and-firewall-notes" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1248,6 +1270,16 @@ DB_DATABASE_NAME=immich
 </code></pre></div>
 <p>Use <code>DB_HOSTNAME</code> from Immich's <code>.env</code> file, including when connecting to an external database. A nonblank <code>DB_HOST</code> takes precedence over <code>DB_HOSTNAME</code> for existing installations. If <code>DB_HOST</code> is empty or contains only spaces, the app uses <code>DB_HOSTNAME</code>. If neither has a nonblank value, the host defaults to <code>database</code>.</p>
 <p>The example publishes the UI on host port <code>8080</code>. Change the left side of the port mapping if it is already in use. Do not expose the UI publicly; see the private-access options below.</p>
+<h2 id="image-versions">Image versions<a class="headerlink" href="#image-versions" title="Permanent link">&para;</a></h2>
+<p><code>latest</code> normally follows GitHub's designated latest stable release after its image is successfully published. Maintainers can explicitly promote another validated build using the manual publishing option. Use a published version tag to control upgrades, for example <code>ghcr.io/immich-reversegeo/immich-reversegeo:1.2.3</code>. This is an example; choose an available version from <a href="https://github.com/immich-reversegeo/immich-reversegeo/releases">GitHub Releases</a>.</p>
+<ul>
+<li>Releases tagged <code>v1.2.3</code> publish both <code>1.2.3</code> and <code>v1.2.3</code> image tags.</li>
+<li>Other stable releases retain their version tags without changing <code>latest</code>. Rerunning an older release does not automatically move <code>latest</code> backwards.</li>
+<li>Prereleases publish their full version tags, such as <code>1.2.3-rc.1</code>, without updating <code>latest</code>.</li>
+<li><code>edge</code> follows development builds from <code>master</code>.</li>
+<li><code>sha-...</code> tags identify builds by commit.</li>
+</ul>
+<p>After changing the image version in your Compose file, run <code>docker compose pull immich-reversegeo</code> and <code>docker compose up -d immich-reversegeo</code>. Keep your existing <code>/config</code> and <code>/data</code> volumes.</p>
 <h2 id="vps-and-firewall-notes">VPS and firewall notes<a class="headerlink" href="#vps-and-firewall-notes" title="Permanent link">&para;</a></h2>
 <p>Do not expose the web UI publicly. Docker-published ports can bypass host firewall rules such as UFW, so do not rely on the host firewall alone to hide a broadly published <code>8080:8080</code> mapping on an internet-facing server.</p>
 <p>If you run Immich ReverseGeo on a VPS and only need local or SSH-forwarded access, bind the published port to localhost:</p>
