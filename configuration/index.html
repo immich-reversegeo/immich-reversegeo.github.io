@@ -614,6 +614,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#limiting-the-country-boundary-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Limiting the country boundary cache
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#releasing-idle-country-boundaries" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1279,6 +1290,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#limiting-the-country-boundary-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Limiting the country boundary cache
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#releasing-idle-country-boundaries" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1548,6 +1570,11 @@ The Settings page is intentionally small. Most users only need to check the data
 <p>Expect slower processing and more disk reads. This is not a total RAM cap: the web app, geometry checks, and native libraries use additional memory. Temporary DuckDB spill files live under <code>/data/duckdb-tmp</code>. Memory shown by your host may stay elevated after a run while the runtime keeps freed memory available for reuse.</p>
 <p>Use Lookup on a few known coordinates first, then compare memory use during a processing pass. Compare the first pass that creates country caches separately from later passes that reuse them. This mode changes resource use, not location matching rules, and does not repair missing or incorrect boundary data.</p>
 <p>In both modes, processing checks skipped IDs one batch at a time rather than loading the entire skipped history into RAM.</p>
+<h3 id="limiting-the-country-boundary-cache">Limiting the country boundary cache<a class="headerlink" href="#limiting-the-country-boundary-cache" title="Permanent link">&para;</a></h3>
+<p>Enable <strong>Limit country boundary cache</strong> under Settings → Processing to reduce country matching memory while keeping your normal worker and batch settings. It reads country boundary parts from disk and retains recently used parts, instead of keeping the full prepared country index in RAM. Leave it off for the fastest repeated lookups.</p>
+<p>Start with the default <strong>256 MiB</strong> budget. Values from <strong>1 to 1024 MiB</strong> are supported. A smaller budget causes more disk reads and repeated geometry decoding. Parts larger than the budget are checked without caching them. Save to apply; changing this option or its budget releases the existing country cache.</p>
+<p>The budget estimates retained geometry size. It is <strong>not a total RAM cap</strong>: active lookups, the web app, administrative boundaries, downloads, and native libraries also use memory. Evicted geometry becomes available for garbage collection, so the host's RAM figure may fall later. The idle release setting below also applies to this cache. Low-memory mode takes precedence and does not retain country boundary parts.</p>
+<p>Use Lookup on a few known coordinates, then compare memory and processing time on your library. Compare the first pass separately from later passes. This option preserves country matching rules; it cannot repair incorrect or missing boundary data.</p>
 <h3 id="releasing-idle-country-boundaries">Releasing idle country boundaries<a class="headerlink" href="#releasing-idle-country-boundaries" title="Permanent link">&para;</a></h3>
 <p>Normal mode reads country data directly from disk while building its in-memory index, reducing temporary memory use during loading. The completed index stays cached for fast repeated lookups.</p>
 <p><strong>Release country index after idle (minutes)</strong> controls normal mode's cached country boundaries. The default is <strong>5 minutes</strong> without a country lookup. Use <strong>0</strong> to keep them cached, or a value from <strong>1 to 1440</strong> minutes to release them after idle time. Save the setting to apply it.</p>
