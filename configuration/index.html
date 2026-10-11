@@ -1529,13 +1529,15 @@ The Settings page is intentionally small. Most users only need to check the data
 </ul>
 <p>This keeps the main Settings page simple while still giving you a way to fix countries where the default city result is not what you want.</p>
 <h3 id="what-it-actually-changes">What it actually changes<a class="headerlink" href="#what-it-actually-changes" title="Permanent link">&para;</a></h3>
-<p>The City Resolver only affects the <code>city</code> value.</p>
+<p>The City Resolver controls which city-like area the app prefers. When Overture provides parent information for that area, the app also uses it to select a consistent state.</p>
 <p>It is useful when the app finds the right general area, but chooses the wrong name for your taste. For example:</p>
 <ul>
 <li>it picks a district instead of the wider city</li>
 <li>it picks a very small local area instead of the municipality</li>
 <li>it picks something broader than you want</li>
 </ul>
+<p>With newly downloaded Overture country caches, a containing neighborhood can supply its parent city when your preferred city type has no polygon match. Your configured place-type order still applies. The app only uses parent information from an area whose geometry matches the coordinate.</p>
+<p>Existing caches continue to work. To use parent matching for a country cached before this update, re-download its Overture cache on the Data page, then compare known coordinates in Lookup before reprocessing your library.</p>
 <h3 id="what-it-does-not-change">What it does not change<a class="headerlink" href="#what-it-does-not-change" title="Permanent link">&para;</a></h3>
 <p>The City Resolver does not download better data or invent missing places.</p>
 <p>It will not help if:</p>

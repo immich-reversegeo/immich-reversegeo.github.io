@@ -919,6 +919,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#overture-release-discovery-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Overture release discovery fails
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1210,6 +1221,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#overture-release-discovery-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Overture release discovery fails
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1315,6 +1337,8 @@ throughput.</p>
 <h2 id="connection-interrupted-or-session-expired">Connection interrupted or session expired<a class="headerlink" href="#connection-interrupted-or-session-expired" title="Permanent link">&para;</a></h2>
 <p>The app tries to reconnect after a temporary connection failure. If the server no longer has your session, the dialog asks you to <strong>Reload page</strong> and warns that unsaved changes may be lost. Reload starts a new session; it does not recover unsaved form values.</p>
 <p>If retrying does not work, check that the container is running and your private connection to it is available, then reload.</p>
+<h2 id="overture-release-discovery-fails">Overture release discovery fails<a class="headerlink" href="#overture-release-discovery-fails" title="Permanent link">&para;</a></h2>
+<p>Check that the app can reach <code>https://stac.overturemaps.org/catalog.json</code>, then retry the lookup or country download. Overture keeps public releases for only 60 days, so the app does not fall back to a fixed older version. Existing downloaded country caches and built-in data remain usable without release discovery. Optional live Places diagnostics still need internet access.</p>
 
 
 
