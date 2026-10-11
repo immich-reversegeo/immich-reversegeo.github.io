@@ -1507,7 +1507,8 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>missing places that are not present in either source</li>
 </ul>
 <h3 id="split-territory-fallback-families">Split-territory fallback families<a class="headerlink" href="#split-territory-fallback-families" title="Permanent link">&para;</a></h3>
-<p>The optional GADM territory fallback setting lets the app try a small related country family when a sovereign or mainland code may be too coarse.</p>
+<p>The optional GADM territory fallback setting lets the app try related territory packages or a shared country download. For Hong Kong and Macao, GADM stores administrative boundaries in its China download. The app uses matching boundaries for state and city names while keeping Hong Kong or Macao as the country. These shared-data lookups require a geometry match and skip unnamed subdivisions; a bounding box alone is not enough.</p>
+<p>Test the coordinate in Lookup first; its GADM investigation uses the shared download automatically. For processing, enable GADM and leave <strong>Try related or shared GADM country packages</strong> checked. The first lookup can download the larger China package; Hong Kong and Macao share the resulting cache. This cannot supply subdivisions missing from GADM or repair an unresolved initial country match.</p>
 <p>Examples include:</p>
 <ul>
 <li>Denmark, Greenland, and the Faroe Islands</li>
