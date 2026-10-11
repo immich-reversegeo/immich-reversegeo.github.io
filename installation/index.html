@@ -1203,7 +1203,7 @@
 <li>a free host port for the web UI, with <code>8080</code> as the default example</li>
 </ul>
 <p>Typical variables come from the shared <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span><code>DB_HOST=database
+<div class="highlight"><pre><span></span><code>DB_HOSTNAME=database
 DB_PORT=5432
 DB_USERNAME=postgres
 DB_PASSWORD=...
@@ -1211,6 +1211,7 @@ DB_DATABASE_NAME=immich
 DATA_DIR=/data
 CONFIG_DIR=/config
 </code></pre></div>
+<p>Use <code>DB_HOSTNAME</code> from Immich's <code>.env</code> file, including when connecting to an external database. Existing <code>DB_HOST</code> settings remain supported and take precedence if both are set. If neither has a nonblank value, the host defaults to <code>database</code>.</p>
 <p>Then start the stack:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>

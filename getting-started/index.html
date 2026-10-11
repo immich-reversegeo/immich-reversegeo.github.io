@@ -1181,12 +1181,13 @@ and
 <li>passing the immich database connection values through to this container</li>
 </ul>
 <p>Typical variables:</p>
-<div class="highlight"><pre><span></span><code>DB_HOST=database
+<div class="highlight"><pre><span></span><code>DB_HOSTNAME=database
 DB_PORT=5432
 DB_USERNAME=...
 DB_PASSWORD=...
 DB_DATABASE_NAME=immich
 </code></pre></div>
+<p>Existing <code>DB_HOST</code> settings remain supported and take precedence over <code>DB_HOSTNAME</code> when nonblank. If neither has a nonblank value, the host defaults to <code>database</code>.</p>
 <h2 id="2-start-the-container">2. Start the container<a class="headerlink" href="#2-start-the-container" title="Permanent link">&para;</a></h2>
 <p>Use Docker with persistent mounts for:</p>
 <ul>

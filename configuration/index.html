@@ -1384,13 +1384,14 @@ The Settings page is intentionally small. Most users only need to check the data
 <p>Database values are environment-backed and shown as read-only in the UI.</p>
 <p>The app reads:</p>
 <ul>
-<li><code>DB_HOST</code></li>
+<li><code>DB_HOSTNAME</code> (or the existing <code>DB_HOST</code> setting)</li>
 <li><code>DB_PORT</code></li>
 <li><code>DB_USERNAME</code></li>
 <li><code>DB_PASSWORD</code></li>
 <li><code>DB_DATABASE_NAME</code></li>
 </ul>
 <p>These values are required because the app reads and updates immich data directly.</p>
+<p>For the database host, a nonblank <code>DB_HOST</code> takes precedence over <code>DB_HOSTNAME</code>. If neither has a nonblank value, the host defaults to <code>database</code>. You can reuse Immich's <code>DB_HOSTNAME</code> value for an external database without renaming it.</p>
 <div class="step-grid">
   <div class="step-card">
     <h3>Read-only by design</h3>
