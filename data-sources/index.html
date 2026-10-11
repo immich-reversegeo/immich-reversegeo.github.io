@@ -1389,6 +1389,7 @@
 </ul>
 <h2 id="built-in-airport-data">Built-in airport data<a class="headerlink" href="#built-in-airport-data" title="Permanent link">&para;</a></h2>
 <p>Immich ReverseGeo also ships with a bundled airport-focused extract built from Overture data.</p>
+<p>The extract uses Overture release <code>2026-09-23.1</code>. Airports may be represented by a boundary or only a point, so the data cannot always establish whether a photo was taken on airport grounds. Updating the app supplies the new bundled extract; it does not replace existing Immich location names. Use Lookup or Preview Location Corrections before resetting photos for reprocessing.</p>
 <p>The app uses it for:</p>
 <ul>
 <li>recognizing airport grounds more accurately than a normal city or commune lookup</li>
@@ -1403,19 +1404,19 @@
 <p>What it does not do:</p>
 <ul>
 <li>it is not a general-purpose places database</li>
-<li>it only helps when the coordinate actually matches airport-related geometry</li>
+<li>a nearby airport can fill an empty city result even when its geometry does not contain the coordinate; proximity alone does not prove the photo was taken at the airport</li>
 </ul>
 <p>Origin:</p>
 <ul>
-<li>exported from Overture transportation data into a bundled airport cache used by the app</li>
+<li>exported from the Overture base theme's infrastructure data, derived from OpenStreetMap</li>
 </ul>
 <p>License:</p>
 <ul>
-<li>ODbL for the transportation theme</li>
+<li>ODbL for this OpenStreetMap-derived extract</li>
 </ul>
 <p>Official references:</p>
 <ul>
-<li><a href="https://docs.overturemaps.org/guides/transportation/">Overture Transportation Guide</a></li>
+<li><a href="https://docs.overturemaps.org/guides/base/infrastructure/">Overture Infrastructure Guide</a></li>
 <li><a href="https://docs.overturemaps.org/attribution/">Overture Attribution and Licensing</a></li>
 </ul>
 <h2 id="optional-live-overture-places-diagnostics">Optional live Overture Places diagnostics<a class="headerlink" href="#optional-live-overture-places-diagnostics" title="Permanent link">&para;</a></h2>
