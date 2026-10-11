@@ -74,6 +74,8 @@ You can enable GADM as an extra administrative boundary source, either as a fall
 
 ### Low-memory mode
 
+Normal mode uses compact boundary storage automatically, with full coordinate precision. No extra setting or cache download is needed for this reduction.
+
 Enable **Low-memory mode** under Settings → Processing when RAM is limited, then save before starting a new run.
 
 The mode:
