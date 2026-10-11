@@ -687,6 +687,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Data tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preview-location-corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Preview Location Corrections
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maintenance actions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1109,6 +1137,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Data tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preview-location-corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Preview Location Corrections
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maintenance actions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1159,6 +1215,8 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <p>The sidebar keeps the main tools available and includes <strong>Help &amp; setup</strong> for the public guides. Browser tab titles identify the current tool.</p>
 <h2 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h2>
 <p>Use <code>Run Now</code> on the Dashboard to start a manual processing pass immediately.</p>
+<p>Runs process active assets with GPS coordinates only when <strong>both city and country are missing</strong>. Existing names are kept, even if they are incorrect. Assets on the skip list are excluded until you clear that list under Data. The unprocessed count includes eligible assets that may still be on the skip list.</p>
+<p>To correct existing names, use <a href="#preview-location-corrections">Preview Location Corrections</a> first, reset only the assets you want to correct, then select <code>Run Now</code>.</p>
 <ul>
 <li>it works even if automatic scheduling is turned off</li>
 <li>it uses your current Settings values for batch size, delay, parallelism, and airport matching</li>
@@ -1179,6 +1237,19 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <p><a class="glightbox" data-title="Coordinate Lookup input" data-type="image" href="../assets/screenshots/lookup.png"><img alt="Coordinate Lookup input" class="doc-screenshot on-glb" src="../assets/screenshots/lookup.png" /></a></p>
 <p>Click the screenshot to enlarge it. Lookup previews do not update Immich assets.</p>
 <h2 id="data-tools">Data tools<a class="headerlink" href="#data-tools" title="Permanent link">&para;</a></h2>
+<h3 id="preview-location-corrections">Preview Location Corrections<a class="headerlink" href="#preview-location-corrections" title="Permanent link">&para;</a></h3>
+<p>Open <strong>Data → Preview Location Corrections</strong> to compare existing city, state, and country names with proposed values from your current processing settings.</p>
+<ol>
+<li>Choose pasted asset GUIDs, an exact existing city/state/country name, or the whole library.</li>
+<li>Start the preview. It checks up to 100 assets per page and may download country caches. It does not write to Immich or change the skip list.</li>
+<li>Review the existing and proposed values. Use <strong>Show only different values</strong> to focus on changes. Different does not necessarily mean better: test unfamiliar results in Lookup using the coordinates shown in the table.</li>
+<li>Select only the assets you want to correct. The GUID list includes your selections across reviewed pages. Copy those GUIDs and take an <a href="https://docs.immich.app/administration/backup-and-restore/">Immich database backup</a> before resetting them under <strong>Reset Immich Geo Data → Reset Single Item(s)</strong>.</li>
+<li>Select <strong>Run Now</strong> on the Dashboard to process the reset assets.</li>
+</ol>
+<p><strong>Preview Next 100</strong> replaces the current results, so select the assets you want to retain first. Selected GUIDs are kept across pages; <strong>Start Preview</strong> clears the selection. After cancellation, you can review completed results and continue after the last checked asset. If cancellation happens before any results are available, start a new preview.</p>
+<p>Settings are loaded once when you start the preview; start again after changing settings. Results may change if settings, source data, or coordinates change before processing.</p>
+<p>Deleted assets and GUIDs without an Immich metadata row are excluded. Missing GPS coordinates, unresolved locations, and lookup failures are shown separately and are excluded from the list of GUIDs with proposed changes. Preview can help find inconsistent names; it cannot recover missing GPS coordinates or guarantee that a proposed name is correct.</p>
+<h3 id="maintenance-actions">Maintenance actions<a class="headerlink" href="#maintenance-actions" title="Permanent link">&para;</a></h3>
 <p>The Data area contains maintenance tools that change downloaded caches or Immich reverse geo values.</p>
 <table>
 <thead>
@@ -1188,6 +1259,10 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>Preview Location Corrections</code></td>
+<td>Compares existing and proposed names in pages of 100 without changing Immich.</td>
+</tr>
 <tr>
 <td><code>Clear Skip List</code></td>
 <td>Removes permanently skipped assets so they can be retried on the next run.</td>
