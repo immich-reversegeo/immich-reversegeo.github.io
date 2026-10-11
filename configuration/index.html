@@ -1639,6 +1639,8 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>broader or tighter matching</li>
 </ul>
 <h3 id="bundled-defaults-vs-your-overrides">Bundled defaults vs your overrides<a class="headerlink" href="#bundled-defaults-vs-your-overrides" title="Permanent link">&para;</a></h3>
+<p>The bundled US profile tries county names after all its city-like place types. For example, a coordinate without a city match can resolve to <code>Monroe County, Florida</code> rather than <code>Florida, Florida</code>. A matching airport boundary can still override that name when airport matching is enabled. This does not add missing towns, parks, or islands to the source data.</p>
+<p>Your explicit global or US override can replace that order. To keep county as a fallback, add <code>county</code> last in your preferred place types. Check representative coordinates in Lookup before saving a custom order. Existing Immich names are not changed automatically; use Preview Location Corrections before a targeted reset and rerun.</p>
 <p>The app ships with built-in default rules. Your own settings sit on top of them:</p>
 <ul>
 <li>bundled global default</li>
