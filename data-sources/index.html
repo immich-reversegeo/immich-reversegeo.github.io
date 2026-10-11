@@ -1326,14 +1326,20 @@
 <p>Why this source is used:</p>
 <ul>
 <li>it is open and easy to bundle</li>
-<li>it gives consistent country polygons for the active runtime</li>
+<li>it gives consistent country and distinct-territory boundaries for the active runtime</li>
 <li>it avoids a live network dependency for the first step of every lookup</li>
+<li>territories keep their own ISO identity instead of being rewritten as the administering country</li>
 </ul>
+<p>The bundled fixture set covers Hong Kong, Macao, Greenland, the Faroe Islands, Jersey, Guernsey, the Isle of Man, Puerto Rico, Guam, the U.S. Virgin Islands, Bermuda, Gibraltar, the Cayman Islands, the British Virgin Islands, Aruba, Curaçao, the Åland Islands, Réunion, French Polynesia, and New Caledonia.</p>
 <p>What it does not do by itself:</p>
 <ul>
 <li>it is not the main state and city source for the final result</li>
-<li>it can still miss some edge-case territories, so country detection is not perfect everywhere</li>
+<li>a territory outside the bundled fixture set can still be missing if the pinned Overture release has no country or dependency boundary for it</li>
+<li>changing the bundled database requires an application or container restart because the country index stays in memory</li>
 </ul>
+<p>Older custom country databases remain usable for country codes the catalog recognizes; the app does not rewrite those files. They retain their original geographic coverage. A missing or conflicting country identity in a newer-format database is reported as a mapping error rather than being assigned to a nearby country.</p>
+<p>Country coverage does not guarantee city or state coverage. Optional GADM data can be unavailable for an identity; the app then keeps available Overture results. Updating the app does not automatically replace existing Immich location names. Use Preview Location Corrections before resetting photos you want to process again.</p>
+<p>If a coordinate still looks wrong, use <a href=".././using-the-app/#lookup">Lookup</a> first. Confirm the country identity, then inspect the downloaded Overture and optional GADM administrative results before changing settings.</p>
 <p>Origin:</p>
 <ul>
 <li>Overture Maps <code>divisions</code> theme, especially <code>division_area</code></li>
