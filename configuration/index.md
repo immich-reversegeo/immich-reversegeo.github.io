@@ -45,7 +45,7 @@ The Settings page lets you control:
 - batch size, delay, and parallelism
 - low-memory mode for hosts with limited RAM
 - how long country boundaries stay cached in RAM when idle
-- whether airport infrastructure can override the city name
+- whether a mapped airport boundary containing the coordinate can override the city name
 - whether GADM administrative areas are enabled as an optional source
 - whether GADM should be preferred over cached Overture divisions
 - whether split-territory GADM fallback families should be tried
@@ -72,6 +72,12 @@ Leave it on if airport names are useful to you. Turn it off if you prefer commun
 ### Optional GADM source
 
 You can enable GADM as an extra administrative boundary source, either as a fallback behind Overture or as the preferred admin source.
+
+### Airport matching
+
+When enabled, airport matching uses an airport name only if the coordinate falls inside its mapped polygon boundary or within 5 m of its edge. This small tolerance accommodates minor GPS and mapping differences. Point-only airports and airports with missing or invalid boundaries are excluded. A nearby airport or overlapping bounding box is not enough, even when the city is missing; the app keeps the administrative result and its usual state/country fallback.
+
+Use Lookup to check a known airport photo and a nearby photo first. The airport trace distinguishes a boundary match with the 5 m tolerance, outside boundary, and boundary unavailable. Missing or inaccurate polygons can prevent airport matching. Turn airport matching off if you prefer city or commune names. Existing Immich names are not rewritten automatically; use Preview Location Corrections before a targeted reset and rerun.
 
 ### Low-memory mode
 

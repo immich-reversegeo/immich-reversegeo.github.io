@@ -603,6 +603,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#airport-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Airport matching
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#low-memory-mode" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1279,6 +1290,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#airport-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Airport matching
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#low-memory-mode" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1525,7 +1547,7 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>batch size, delay, and parallelism</li>
 <li>low-memory mode for hosts with limited RAM</li>
 <li>how long country boundaries stay cached in RAM when idle</li>
-<li>whether airport infrastructure can override the city name</li>
+<li>whether a mapped airport boundary containing the coordinate can override the city name</li>
 <li>whether GADM administrative areas are enabled as an optional source</li>
 <li>whether GADM should be preferred over cached Overture divisions</li>
 <li>whether split-territory GADM fallback families should be tried</li>
@@ -1555,6 +1577,9 @@ The Settings page is intentionally small. Most users only need to check the data
   </div>
 </div>
 
+<h3 id="airport-matching">Airport matching<a class="headerlink" href="#airport-matching" title="Permanent link">&para;</a></h3>
+<p>When enabled, airport matching uses an airport name only if the coordinate falls inside its mapped polygon boundary or within 5 m of its edge. This small tolerance accommodates minor GPS and mapping differences. Point-only airports and airports with missing or invalid boundaries are excluded. A nearby airport or overlapping bounding box is not enough, even when the city is missing; the app keeps the administrative result and its usual state/country fallback.</p>
+<p>Use Lookup to check a known airport photo and a nearby photo first. The airport trace distinguishes a boundary match with the 5 m tolerance, outside boundary, and boundary unavailable. Missing or inaccurate polygons can prevent airport matching. Turn airport matching off if you prefer city or commune names. Existing Immich names are not rewritten automatically; use Preview Location Corrections before a targeted reset and rerun.</p>
 <h3 id="low-memory-mode">Low-memory mode<a class="headerlink" href="#low-memory-mode" title="Permanent link">&para;</a></h3>
 <p>Normal mode uses compact boundary storage automatically, with full coordinate precision. No extra setting or cache download is needed for this reduction.</p>
 <p>Enable <strong>Low-memory mode</strong> under Settings → Processing when RAM is limited, then save before starting a new run.</p>
