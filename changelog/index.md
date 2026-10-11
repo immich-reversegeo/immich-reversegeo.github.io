@@ -6,6 +6,7 @@ Technical implementation notes live in [CHANGELOG.md](<https://github.com/immich
 
 ## Unreleased
 
+- Lookup now shows Nearby Places as an investigation tool, with several suggestions, distances, categories, sources, and reasons for inclusion or exclusion. Nearby places do not change the location written to Immich.
 - Improved downloaded administrative coverage for Saba, Sint Eustatius, Clipperton Island, and Jan Mayen. Affected older caches refresh automatically when needed; other country caches remain usable.
 - Restored optional live Places lookup compatibility with recent Overture releases.
 - New Overture country downloads can use parent areas to improve city matching and keep city/state results consistent. Existing caches remain usable; re-download a country cache and test known coordinates in Lookup to use the improvement.

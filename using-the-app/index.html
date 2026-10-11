@@ -1173,7 +1173,7 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <li>paste or type coordinates to see how the resolver behaves for that point</li>
 <li>it shows the country match, cached administrative area match, optional airport match, and final values that would be written</li>
 <li><code>Include bundled airport infrastructure lookup</code> lets you test with or without airport matching for that lookup</li>
-<li><code>Include live Overture Places lookup</code> adds an extra live place search for debugging, but it is slower and not needed for normal use</li>
+<li><code>Include nearby places</code> adds a slower live Overture search for investigation. It shows nearby suggestions and a small sample of excluded places; it does not change the location written to Immich</li>
 <li><code>Prefer cached GADM administrative areas</code> switches the administrative area part of the lookup to an experimental on-demand GADM cache for that country; country detection still starts with the bundled Overture country data</li>
 </ul>
 <p><a class="glightbox" data-title="Coordinate Lookup input" data-type="image" href="../assets/screenshots/lookup.png"><img alt="Coordinate Lookup input" class="doc-screenshot on-glb" src="../assets/screenshots/lookup.png" /></a></p>
