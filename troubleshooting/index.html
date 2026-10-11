@@ -864,6 +864,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-container-keeps-restarting-or-gets-killed" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The container keeps restarting or gets killed
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#i-want-to-rerun-everything-from-scratch" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1122,6 +1133,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-container-keeps-restarting-or-gets-killed" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The container keeps restarting or gets killed
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#i-want-to-rerun-everything-from-scratch" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1199,6 +1221,20 @@ Most issues come down to one of three things: the app cannot see the right datab
   </div>
 </div>
 
+<h2 id="the-container-keeps-restarting-or-gets-killed">The container keeps restarting or gets killed<a class="headerlink" href="#the-container-keeps-restarting-or-gets-killed" title="Permanent link">&para;</a></h2>
+<p>This usually means the container ran out of memory.</p>
+<p>Check whether the restarts line up with processing runs:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="w"> </span><span class="s1">'{{.RestartCount}} {{.State.OOMKilled}}'</span><span class="w"> </span>immich-reversegeo
+</code></pre></div>
+<p>If <code>OOMKilled</code> is <code>true</code>, or the logs end with <code>System.OutOfMemoryException</code>, raise the memory
+ceiling. The compose snippet in <a href=".././installation/#docker">Installation</a> sets <code>mem_limit: 2g</code>,
+as a starting memory budget. If your Compose file has no <code>mem_limit</code>, add one to set a total
+container memory budget that the .NET runtime can take into account. Large country caches or
+higher parallelism may require a higher limit.</p>
+<p>Lowering the limit is not a fix. The bundled country boundary data alone needs several hundred
+megabytes once loaded, so a limit below that makes the container fail straight away.</p>
+<p>Reducing <strong>max parallelism</strong> in processing settings also lowers peak memory, at the cost of
+throughput.</p>
 <h2 id="i-want-to-rerun-everything-from-scratch">I want to rerun everything from scratch<a class="headerlink" href="#i-want-to-rerun-everything-from-scratch" title="Permanent link">&para;</a></h2>
 <p>The Data page can clear existing <code>city</code>, <code>state</code>, and <code>country</code> values in immich.</p>
 <p>See <a href=".././using-the-app/">Using the App</a> for the reset options and what each one does.</p>

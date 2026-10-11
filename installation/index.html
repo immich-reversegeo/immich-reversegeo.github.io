@@ -1188,6 +1188,7 @@
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span><span class="w">                 </span><span class="c1"># reuse Immich's own .env (DB_USERNAME, DB_PASSWORD, etc.)</span>
 <span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASPNETCORE_URLS=http://+:8080</span>
+<span class="w">    </span><span class="nt">mem_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2g</span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 
 <span class="nt">volumes</span><span class="p">:</span>
@@ -1201,7 +1202,16 @@
 <li>a persistent <code>/config</code> volume for settings</li>
 <li>a persistent <code>/data</code> volume for downloaded Overture data and runtime state</li>
 <li>a free host port for the web UI, with <code>8080</code> as the default example</li>
+<li>about 2 GB of memory, set by <code>mem_limit</code> in the snippet above</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Why the memory limit is there</p>
+<p>The bundled country boundary data is held in memory while processing runs and uses several hundred
+megabytes. <code>mem_limit</code> sets a total container memory budget that the .NET runtime can take
+into account. Large country caches and high parallelism can increase peak memory use.</p>
+<p>Do not lower it much below <code>2g</code>. A limit under the working set makes the container fail
+immediately instead of running. Raising it is fine.</p>
+</div>
 <p>Typical variables come from the shared <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code>DB_HOSTNAME=database
 DB_PORT=5432
