@@ -4,36 +4,36 @@
         <loc>https://immich-reversegeo.github.io/</loc>
       </url>
       <url>
-        <loc>https://immich-reversegeo.github.io/getting-started/</loc>
-      </url>
-      <url>
-        <loc>https://immich-reversegeo.github.io/installation/</loc>
-      </url>
-      <url>
-        <loc>https://immich-reversegeo.github.io/configuration/</loc>
-      </url>
-      <url>
-        <loc>https://immich-reversegeo.github.io/using-the-app/</loc>
-      </url>
-      <url>
-        <loc>https://immich-reversegeo.github.io/data-sources/</loc>
-      </url>
-      <url>
         <loc>https://immich-reversegeo.github.io/architecture/</loc>
       </url>
       <url>
         <loc>https://immich-reversegeo.github.io/changelog/</loc>
       </url>
       <url>
-        <loc>https://immich-reversegeo.github.io/troubleshooting/</loc>
+        <loc>https://immich-reversegeo.github.io/configuration/</loc>
       </url>
       <url>
-        <loc>https://immich-reversegeo.github.io/support/</loc>
+        <loc>https://immich-reversegeo.github.io/data-sources/</loc>
+      </url>
+      <url>
+        <loc>https://immich-reversegeo.github.io/getting-started/</loc>
+      </url>
+      <url>
+        <loc>https://immich-reversegeo.github.io/installation/</loc>
       </url>
       <url>
         <loc>https://immich-reversegeo.github.io/privacy/</loc>
       </url>
       <url>
+        <loc>https://immich-reversegeo.github.io/support/</loc>
+      </url>
+      <url>
         <loc>https://immich-reversegeo.github.io/tos/</loc>
+      </url>
+      <url>
+        <loc>https://immich-reversegeo.github.io/troubleshooting/</loc>
+      </url>
+      <url>
+        <loc>https://immich-reversegeo.github.io/using-the-app/</loc>
       </url>
 </urlset>
