@@ -614,6 +614,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#releasing-idle-country-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Releasing idle country boundaries
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gadm-administrative-areas" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1268,6 +1279,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#releasing-idle-country-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Releasing idle country boundaries
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gadm-administrative-areas" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1480,6 +1502,7 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>when it runs, using simple presets or a custom cron expression</li>
 <li>batch size, delay, and parallelism</li>
 <li>low-memory mode for hosts with limited RAM</li>
+<li>how long country boundaries stay cached in RAM when idle</li>
 <li>whether airport infrastructure can override the city name</li>
 <li>whether GADM administrative areas are enabled as an optional source</li>
 <li>whether GADM should be preferred over cached Overture divisions</li>
@@ -1520,10 +1543,16 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>uses one DuckDB worker and a 256 MiB buffer budget for remote queries and Overture cache creation</li>
 <li>reads matching country polygons from disk instead of retaining the worldwide country index in RAM</li>
 </ul>
+<p>The first country lookup prepares a small disk index from the bundled data under <code>/data/country-polygon-parts.db</code>. Later lookups read only nearby polygon parts, including their original boundaries and holes. This requires no network download and rebuilds automatically after bundled data changes. If the index cannot be prepared, the app keeps using the original disk lookup, which can be slower.</p>
 <p>Your saved batch size and parallelism stay unchanged and are used again when you disable the mode. Work already in progress finishes with its existing limits; the next processing run uses the new batch and worker limits.</p>
 <p>Expect slower processing and more disk reads. This is not a total RAM cap: the web app, geometry checks, and native libraries use additional memory. Temporary DuckDB spill files live under <code>/data/duckdb-tmp</code>. Memory shown by your host may stay elevated after a run while the runtime keeps freed memory available for reuse.</p>
 <p>Use Lookup on a few known coordinates first, then compare memory use during a processing pass. Compare the first pass that creates country caches separately from later passes that reuse them. This mode changes resource use, not location matching rules, and does not repair missing or incorrect boundary data.</p>
 <p>In both modes, processing checks skipped IDs one batch at a time rather than loading the entire skipped history into RAM.</p>
+<h3 id="releasing-idle-country-boundaries">Releasing idle country boundaries<a class="headerlink" href="#releasing-idle-country-boundaries" title="Permanent link">&para;</a></h3>
+<p>Normal mode reads country data directly from disk while building its in-memory index, reducing temporary memory use during loading. The completed index stays cached for fast repeated lookups.</p>
+<p><strong>Release country index after idle (minutes)</strong> controls normal mode's cached country boundaries. The default is <strong>5 minutes</strong> without a country lookup. Use <strong>0</strong> to keep them cached, or a value from <strong>1 to 1440</strong> minutes to release them after idle time. Save the setting to apply it.</p>
+<p>Releasing the index makes its memory available for garbage collection; the host's RAM figure may fall later. The next country lookup rebuilds the index, so its first result can take longer. Active country lookups are allowed to finish. Low-memory mode reads from disk and does not retain this index.</p>
+<p>Use Lookup on a known coordinate before and after the idle period to check the result and rebuild delay. This setting reduces retained country memory; it is not a total RAM cap and does not repair incorrect location data.</p>
 <h3 id="gadm-administrative-areas">GADM administrative areas<a class="headerlink" href="#gadm-administrative-areas" title="Permanent link">&para;</a></h3>
 <p>When enabled, GADM adds another country-level administrative boundary source for <code>state</code> and <code>city</code> matching.</p>
 <p>Recommended starting point:</p>
