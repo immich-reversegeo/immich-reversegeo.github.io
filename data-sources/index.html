@@ -1404,8 +1404,9 @@
 <p>What it does not do:</p>
 <ul>
 <li>it is not a general-purpose places database</li>
-<li>airports mapped only as points, missing or invalid boundaries, and coordinates more than 5 m outside an airport boundary are excluded, even when no city is available</li>
-<li>proximity and bounding-box overlap alone do not establish an airport match</li>
+<li>by default, point-only airports, missing or invalid boundaries, and coordinates more than 5 m outside an airport boundary are excluded</li>
+<li>the optional point-only fallback can fill an empty city within 100 m, but cannot confirm airport grounds or replace an administrative city/county</li>
+<li>proximity and bounding-box overlap alone do not confirm airport grounds</li>
 </ul>
 <p>Origin:</p>
 <ul>
