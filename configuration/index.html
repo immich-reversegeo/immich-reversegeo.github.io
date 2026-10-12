@@ -591,6 +591,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#photo-previews-and-immich-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Photo previews and Immich links
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#processing-settings" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1295,6 +1306,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#photo-previews-and-immich-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Photo previews and Immich links
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#processing-settings" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1573,6 +1595,38 @@ The Settings page is intentionally small. Most users only need to check the data
 <p>Settings and City Resolver show whether changes are saved. <strong>Save changes</strong> saves the values present when you click it. If you keep editing during a save, those later edits stay pending for another save. Leaving an editor with unsaved changes asks for confirmation.</p>
 <p>The two editors save their own sections, so saving City Resolver does not overwrite processing or schedule changes made elsewhere. <strong>Test Connection</strong> checks the environment-backed database connection without saving settings.</p>
 <p>Saving replaces the settings file only after the new values have been written completely. If a save fails, the previous file remains available. Database credentials stay in the environment.</p>
+<h2 id="photo-previews-and-immich-links">Photo previews and Immich links<a class="headerlink" href="#photo-previews-and-immich-links" title="Permanent link">&para;</a></h2>
+<p>Live location previews and saved reports can show photo thumbnails and an <strong>Open in Immich</strong> link. This connection is optional; location processing still uses your database settings.</p>
+<p>Add these environment variables to the Immich ReverseGeo service, then recreate or restart it:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IMMICH_URL</code></td>
+<td>Immich server URL reachable from Immich ReverseGeo, such as <code>http://immich-server:2283</code>.</td>
+</tr>
+<tr>
+<td><code>IMMICH_WEB_URL</code></td>
+<td>Optional URL used by your browser, such as <code>https://photos.example.com</code>. Defaults to <code>IMMICH_URL</code>.</td>
+</tr>
+<tr>
+<td><code>IMMICH_API_KEY</code></td>
+<td>Immich API key with <code>asset.view</code> permission and access to the photos being previewed.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="nt">environment</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">IMMICH_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://immich-server:2283</span>
+<span class="w">  </span><span class="nt">IMMICH_WEB_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://photos.example.com</span>
+<span class="w">  </span><span class="nt">IMMICH_API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${REVERSEGEO_IMMICH_API_KEY}</span>
+</code></pre></div>
+<p>Put <code>REVERSEGEO_IMMICH_API_KEY</code> in your compose environment or secrets-backed deployment configuration. The key stays on the server and is not stored in settings or saved reports. An API key can only show photos its Immich account can access; a database-wide preview may include photos belonging to other users.</p>
+<p>You can configure only <code>IMMICH_WEB_URL</code> if you want original-photo links without thumbnails. Thumbnails are fetched on demand for assets in saved preview reports and are not saved as image files. Missing thumbnails, denied access, or an unavailable Immich server show <strong>Preview unavailable</strong> while the saved location results remain usable. Original-photo links open Immich in a new tab and use your normal Immich sign-in.</p>
 <h2 id="processing-settings">Processing settings<a class="headerlink" href="#processing-settings" title="Permanent link">&para;</a></h2>
 <p>The Settings page lets you control:</p>
 <ul>

@@ -1227,6 +1227,10 @@
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span><span class="w">                 </span><span class="c1"># reuse Immich's own .env (DB_USERNAME, DB_PASSWORD, etc.)</span>
 <span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ASPNETCORE_URLS=http://+:8080</span>
+<span class="w">      </span><span class="c1"># Optional photo previews and original-photo links:</span>
+<span class="w">      </span><span class="c1"># - IMMICH_URL=http://immich-server:2283</span>
+<span class="w">      </span><span class="c1"># - IMMICH_WEB_URL=https://photos.example.com</span>
+<span class="w">      </span><span class="c1"># - IMMICH_API_KEY=${REVERSEGEO_IMMICH_API_KEY}</span>
 <span class="w">    </span><span class="nt">mem_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2g</span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 
