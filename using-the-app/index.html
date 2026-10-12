@@ -708,22 +708,44 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preview-location-corrections" class="md-nav__link">
+  <a href="#location-management" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Preview Location Corrections
+        Location Management
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Preview Location Corrections">
+    <nav class="md-nav" aria-label="Location Management">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#saved-previews" class="md-nav__link">
+  <a href="#saved-scans" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Saved previews
+        Saved scans
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-saved-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Applying saved proposals
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-history-undo-and-interruption" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Change history, undo, and interruption
       </span>
     </span>
   </a>
@@ -1192,22 +1214,44 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preview-location-corrections" class="md-nav__link">
+  <a href="#location-management" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Preview Location Corrections
+        Location Management
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Preview Location Corrections">
+    <nav class="md-nav" aria-label="Location Management">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#saved-previews" class="md-nav__link">
+  <a href="#saved-scans" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Saved previews
+        Saved scans
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-saved-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Applying saved proposals
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-history-undo-and-interruption" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Change history, undo, and interruption
       </span>
     </span>
   </a>
@@ -1284,7 +1328,7 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <h2 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h2>
 <p>Use <code>Run Now</code> on the Dashboard to start a manual processing pass immediately.</p>
 <p>Runs process active assets with GPS coordinates only when <strong>both city and country are missing</strong>. Existing names are kept, even if they are incorrect. Assets on the skip list are excluded until you clear that list under Data. The unprocessed count includes eligible assets that may still be on the skip list.</p>
-<p>To correct existing names, use <a href="#preview-location-corrections">Preview Location Corrections</a> first, reset only the assets you want to correct, then select <code>Run Now</code>.</p>
+<p>To correct existing names, open <a href="#location-management">Location Management</a>, scan and review the proposed names, then apply only the differences you select. You can still reset selected assets and reprocess them if you prefer.</p>
 <ul>
 <li>it works even if automatic scheduling is turned off</li>
 <li>it uses your current Settings values for batch size, delay, parallelism, and airport matching</li>
@@ -1307,29 +1351,39 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <h3 id="country-lookup-failures">Country lookup failures<a class="headerlink" href="#country-lookup-failures" title="Permanent link">&para;</a></h3>
 <p>Lookup distinguishes a point outside the bundled country coverage from a matched boundary whose country code cannot be resolved. If the country code cannot be resolved, check that the bundled country database and country catalog belong to the same app release. A missing boundary match can require newer geographic data; changing city settings will not add country coverage.</p>
 <h2 id="data-tools">Data tools<a class="headerlink" href="#data-tools" title="Permanent link">&para;</a></h2>
-<h3 id="preview-location-corrections">Preview Location Corrections<a class="headerlink" href="#preview-location-corrections" title="Permanent link">&para;</a></h3>
-<p>Open <strong>Data → Preview Location Corrections</strong> to compare existing city, state, and country names with proposed values from your current processing settings.</p>
+<p><a id="preview-location-corrections"></a></p>
+<h3 id="location-management">Location Management<a class="headerlink" href="#location-management" title="Permanent link">&para;</a></h3>
+<p>Use the tabs in <strong>Location Management</strong> to switch between Overview, Scan &amp; Review, Saved Scans, and Change History. The highlighted tab shows your current section.</p>
+<p>Open <strong>Data → Location Management → Scan &amp; Review</strong> to compare existing city, state, and country names with proposed values from your current processing settings. Scanning is read-only; applying selected changes is a separate confirmed action. Existing preview URLs and saved reports remain available.</p>
 <ol>
 <li>Choose pasted asset GUIDs, an exact existing city/state/country name, or the whole library.</li>
-<li>Start the preview. It checks up to 100 assets per page and may download country caches. Every scope includes only assets with both GPS coordinates. It does not write to Immich or change the skip list.</li>
+<li>Start the scan. It checks up to 100 assets per page and may download country caches. Every scope includes only assets with both GPS coordinates. It does not write to Immich or change the skip list.</li>
 <li>Review the existing and proposed values. Use <strong>Show only different values</strong> to focus on changes. Different does not necessarily mean better: test unfamiliar results in Lookup using the coordinates shown in the table.</li>
-<li>Select only the assets you want to correct. The GUID list includes your selections across reviewed pages. Copy those GUIDs and take an <a href="https://docs.immich.app/administration/backup-and-restore/">Immich database backup</a> before resetting them under <strong>Reset Immich Geo Data → Reset Single Item(s)</strong>.</li>
-<li>Select <strong>Run Now</strong> on the Dashboard to process the reset assets.</li>
+<li>Select only the assets you want to correct. Selections are kept across review pages. Open <strong>Review Selected Changes</strong>, inspect the exact existing and proposed names, and take an <a href="https://docs.immich.app/administration/backup-and-restore/">Immich database backup</a>.</li>
+<li>Acknowledge the confirmation and choose <strong>Confirm Apply</strong>. The app writes the saved proposed names directly; no reset or processing run is needed. Each operation supports up to 1,000 selected differences. Its results appear beside the assets and in <strong>Change History</strong>.</li>
 </ol>
-<p>In live and saved previews, changed characters are highlighted in both the existing and proposed names. The comparison is exact, so punctuation, capitalization, and spaces can mark a name as different even when it refers to the same place. Changed spaces appear as <code>␠</code>; other invisible characters use symbols or Unicode codes. Hover over a highlight to see its character codes. An empty value appears as <code>(empty)</code> and a missing value as <code>—</code>.</p>
-<p><strong>Show only different values</strong> keeps differences from every checked batch available while scanning continues. Browse them with <strong>Previous 100 Differences</strong> and <strong>Next 100 Differences</strong> when the scan is paused or complete. Uncheck the filter to inspect all results from the current batch. <strong>Preview Next 100</strong> replaces only the full-results batch; selected GUIDs are kept across review pages. <strong>Start Preview</strong> clears the selection and starts a new differences list. After cancellation, you can review completed results and continue after the last checked asset. If cancellation happens before any results are available, start a new preview.</p>
+<p>In live and saved scans, changed characters are highlighted in both the existing and proposed names. The comparison is exact, so punctuation, capitalization, and spaces can mark a name as different even when it refers to the same place. Changed spaces appear as <code>␠</code>; other invisible characters use symbols or Unicode codes. Hover over a highlight to see its character codes. An empty value appears as <code>(empty)</code> and a missing value as <code>—</code>.</p>
+<p><strong>Show only different values</strong> keeps differences from every checked batch available while scanning continues. Browse them with <strong>Previous 100 Differences</strong> and <strong>Next 100 Differences</strong> when the scan is paused or complete. Uncheck the filter to inspect all results from the current batch. <strong>Scan Next 100</strong> replaces only the full-results batch; selected GUIDs are kept across review pages. <strong>Start Scan</strong> clears the selection and starts a new differences list. After cancellation, you can review completed results and continue after the last checked asset. If cancellation happens before any results are available, start a new scan.</p>
 <p><strong>Continuous scan</strong> advances through all matching assets automatically. Set <strong>Pause after this many new differences</strong> to stop for review after a chosen number of changed results; use <strong>0</strong> to scan to the end. <strong>Continue Scan</strong> resumes after the last saved asset and pauses after the next group of differences. Unresolved results and errors do not count as differences. The full-results table shows the current batch of up to 100 results. The differences view shows a review page of up to 100 differences accumulated across the scan; the saved report contains every completed result.</p>
-<p>Keep the preview page open while scanning. Navigating away, reloading, or closing the browser stops the scan when the page disconnects. It is not a background job. Saved results remain available, but resuming a scan requires the original page to stay open; otherwise start a new preview.</p>
-<p>Choose <strong>Order by → Nearby coordinates</strong> to group photos into quarter-degree map tiles, helping nearby lookups reuse cached data. This can reduce switching between country caches, particularly with the bounded country cache, but each uncached country still needs preparing. Sorting can increase database query time for large libraries; use <strong>Asset GUID</strong> order if loading matching assets takes too long. Start a new preview to change the order. Both orders support continuing after the last checked asset on cancellation.</p>
-<p>While preview runs, the page shows the current asset, lookup step or country-cache wait, and elapsed time. The progress bar counts checked assets, not downloaded data. Preparing a country for the first time can take several minutes; later lookups reuse its cache. To investigate a long wait, open <strong>Logs</strong> from the preview page. Preview events include a short identifier so you can follow one preview's start, cache waits, failures, cancellation, and page summaries. These events also appear in the container logs. Successful cached lookups are summarized rather than logged for every asset.</p>
-<p>Preview counts all matching assets with both GPS coordinates when you start and shows the total checked and percentage across manual pages and continuous scans. Estimated remaining processing time appears after five checked assets and excludes review pauses. Country-cache downloads can change the estimate. Use <strong>Preview Next 100</strong> or <strong>Continue Scan</strong> to resume after a pause. If assets are added, deleted, or edited during the preview, the starting total may no longer match the final count.</p>
-<p>Settings are loaded once when you start the preview; start again after changing settings. Results may change if settings, source data, or coordinates change before processing.</p>
-<p>Photo thumbnails and <strong>Open in Immich</strong> links are available in live previews and saved reports when the optional <a href=".././configuration/#photo-previews-and-immich-links">Immich connection</a> is configured. Thumbnails load on demand; they are not part of the saved snapshot and may become unavailable if an asset is deleted or access changes.</p>
-<h4 id="saved-previews">Saved previews<a class="headerlink" href="#saved-previews" title="Permanent link">&para;</a></h4>
-<p>Each completed asset result is saved automatically under <strong>Data → Saved Previews</strong>, including results checked before you cancel. Open a report later to compare the saved existing and proposed names, filter to differences, and copy GUIDs you have reviewed across pages. Viewing a saved report does not run new lookups or change Immich. Selections made with checkboxes are kept only while that report is open; the saved results remain available after a reload or app restart.</p>
-<p>Reports store the selection, processing settings, asset GUIDs, GPS coordinates, names, and lookup failures in <code>location-previews.db</code> under your <code>/data</code> volume. Preserve that volume to keep reports across container replacements. Reports stay until you delete them from the report page; deleting a report removes only its local snapshot. A report marked <strong>More assets available</strong>, <strong>Paused</strong>, <strong>Cancelled</strong>, or <strong>Interrupted</strong> covers only the assets already checked. After restarting, start a new preview to check any remaining assets.</p>
-<p>Saved values may be out of date if Immich metadata, coordinates, settings, or source data changed afterward. Run a new preview before deciding which assets to reset. If saving fails, the preview stops with an error; results already saved are retained.</p>
-<p>Deleted assets, GUIDs without an Immich metadata row, and assets missing either latitude or longitude are excluded from every preview query, including pasted GUIDs. Unresolved locations and lookup failures are shown separately and cannot be selected for correction. Preview can help find inconsistent names; it cannot recover missing GPS coordinates or guarantee that a proposed name is correct.</p>
+<p>Keep the scan page open while scanning. Navigating away, reloading, or closing the browser stops the scan when the page disconnects. It is not a background job. Saved results remain available, but resuming a scan requires the original page to stay open; otherwise start a new scan.</p>
+<p>Choose <strong>Order by → Nearby coordinates</strong> to group photos into quarter-degree map tiles, helping nearby lookups reuse cached data. This can reduce switching between country caches, particularly with the bounded country cache, but each uncached country still needs preparing. Sorting can increase database query time for large libraries; use <strong>Asset GUID</strong> order if loading matching assets takes too long. Start a new scan to change the order. Both orders support continuing after the last checked asset on cancellation.</p>
+<p>While a scan runs, the page shows the current asset, lookup step or country-cache wait, and elapsed time. The progress bar counts checked assets, not downloaded data. Preparing a country for the first time can take several minutes; later lookups reuse its cache. To investigate a long wait, open <strong>Logs</strong> from the scan page. Scan events include a short identifier so you can follow one preview's start, cache waits, failures, cancellation, and page summaries. These events also appear in the container logs. Successful cached lookups are summarized rather than logged for every asset.</p>
+<p>A scan counts all matching assets with both GPS coordinates when you start and shows the total checked and percentage across manual pages and continuous scans. Estimated remaining processing time appears after five checked assets and excludes review pauses. Country-cache downloads can change the estimate. Use <strong>Scan Next 100</strong> or <strong>Continue Scan</strong> to resume after a pause. If assets are added, deleted, or edited during the preview, the starting total may no longer match the final count.</p>
+<p>Settings are loaded once when you start the scan; start again after changing settings. Results may change if settings, source data, or coordinates change before processing.</p>
+<p>Photo thumbnails and <strong>Open in Immich</strong> links are available in live scans and saved reports when the optional <a href=".././configuration/#photo-previews-and-immich-links">Immich connection</a> is configured. Thumbnails load on demand; they are not part of the saved snapshot and may become unavailable if an asset is deleted or access changes.</p>
+<h4 id="saved-scans">Saved scans<a class="headerlink" href="#saved-scans" title="Permanent link">&para;</a></h4>
+<p>Each completed asset result is saved automatically under <strong>Location Management → Saved Scans</strong>, including results checked before you cancel. Open a report later to compare the saved existing and proposed names, filter to differences, and copy GUIDs you have reviewed across pages. Viewing a saved report does not run new lookups or change Immich. Selections made with checkboxes are kept only while that report is open; the saved results remain available after a reload or app restart.</p>
+<p>Reports store the selection, processing settings, asset GUIDs, GPS coordinates, names, and lookup failures in <code>location-previews.db</code> under your <code>/data</code> volume. Preserve that volume to keep reports across container replacements. Reports stay until you delete them from the report page; deleting a report removes only its local snapshot. A report marked <strong>More assets available</strong>, <strong>Paused</strong>, <strong>Cancelled</strong>, or <strong>Interrupted</strong> covers only the assets already checked. After restarting, start a new scan to check any remaining assets.</p>
+<p>Saved values may be out of date if Immich metadata, coordinates, settings, or source data changed afterward. Run a new scan to check current proposals, or review the saved proposals before applying; changed names and coordinates are skipped. If saving fails, the scan stops with an error; results already saved are retained.</p>
+<p>Deleted assets, GUIDs without an Immich metadata row, and assets missing either latitude or longitude are excluded from every scan query, including pasted GUIDs. Unresolved locations and lookup failures are shown separately and cannot be selected for correction. Scanning can help find inconsistent names; it cannot recover missing GPS coordinates or guarantee that a proposed name is correct.</p>
+<h4 id="applying-saved-proposals">Applying saved proposals<a class="headerlink" href="#applying-saved-proposals" title="Permanent link">&para;</a></h4>
+<p>You can apply selected differences from a live scan or a saved scan. The app uses the exact saved proposed names, without running another lookup. It compares the current city, state, country, and GPS coordinates with the reviewed snapshot before each write. Assets with changed values, deleted assets, and missing metadata rows are skipped. Unresolved and failed lookup results cannot be applied. Punctuation-only changes are still differences; review them before selecting.</p>
+<p>Applying changes updates only city, state, and country. GPS coordinates and other metadata are preserved. Refresh the asset in Immich to see its new names. Scheduled metadata extraction or other apps can subsequently replace those names; run a new scan if the current results differ.</p>
+<h4 id="change-history-undo-and-interruption">Change history, undo, and interruption<a class="headerlink" href="#change-history-undo-and-interruption" title="Permanent link">&para;</a></h4>
+<p><strong>Location Management → Change History</strong> records each selected operation and its per-asset outcomes. Open an operation to see its saved previous names, exact proposals, timestamps, and applied, skipped, pending, or <strong>Needs review</strong> results. Select applied rows, review the previous names to restore, and confirm <strong>Undo</strong>. Undo requires the current applied names, GPS coordinates, and metadata version to match; any later metadata edit is skipped, even if its location names are identical.</p>
+<p>The history overview shows pending apply and undo work separately. If any selected change is no longer eligible for undo, the app queues none of that selection; refresh the results and review your selection again.</p>
+<p>Cancel or leave the page to stop remaining work. A write already underway may complete. Pending items have not been attempted and can be resumed from Change History after confirmation. Applied items are not retried. If the app loses the connection or stops between a database write and saving its outcome, the item is marked <strong>Needs review</strong>. Check that asset in Immich and run a new scan before making another change; uncertain items are never retried or undone automatically.</p>
+<p>Previous names and operation results are saved in <code>location-changes.db</code> under <code>/data</code>, separately from saved scans. Preserve this volume to retain history and undo information. Deleting a saved scan does not delete its change history. The journal contains location metadata; protect it along with your other app data. It does not replace an Immich database backup, and undo cannot restore deleted assets or override later edits.</p>
 <h3 id="maintenance-actions">Maintenance actions<a class="headerlink" href="#maintenance-actions" title="Permanent link">&para;</a></h3>
 <p>The Data area contains maintenance tools that change downloaded caches or Immich reverse geo values.</p>
 <table>
@@ -1341,8 +1395,8 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 </thead>
 <tbody>
 <tr>
-<td><code>Preview Location Corrections</code></td>
-<td>Compares existing and proposed names in pages of 100 without changing Immich.</td>
+<td><code>Location Management</code></td>
+<td>Scan and review names, apply selected differences, and inspect or undo changes.</td>
 </tr>
 <tr>
 <td><code>Clear Skip List</code></td>
