@@ -769,6 +769,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#reviewing-location-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reviewing location results
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1286,6 +1297,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#reviewing-location-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reviewing location results
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1427,6 +1449,9 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <p>The history overview shows pending apply and undo work separately. If any selected change is no longer eligible for undo, the app queues none of that selection; refresh the results and review your selection again.</p>
 <p>Cancel or leave the page to stop remaining work. A write already underway may complete. Pending items have not been attempted and can be resumed from Change History after confirmation. Applied items are not retried. If the app loses the connection or stops between a database write and saving its outcome, the item is marked <strong>Needs review</strong>. Check that asset in Immich and run a new scan before making another change; uncertain items are never retried or undone automatically.</p>
 <p>Previous names and operation results are saved in <code>location-changes.db</code> under <code>/data</code>, separately from saved scans. Preserve this volume to retain history and undo information. Deleting a saved scan does not delete its change history. The journal contains location metadata; protect it along with your other app data. It does not replace an Immich database backup, and undo cannot restore deleted assets or override later edits.</p>
+<h4 id="reviewing-location-results">Reviewing location results<a class="headerlink" href="#reviewing-location-results" title="Permanent link">&para;</a></h4>
+<p>Scan setup, progress, and results appear in separate sections. On a continued saved scan, expand <strong>Original scan options</strong> to see the settings used for that scan. Pause reasons and errors remain visible beside the scan action.</p>
+<p>Select differences in the results table, then review the exact names before applying. Expand <strong>Review help</strong> for filter descriptions, highlighted differences, and photo setup. Saved reports keep scan details and deletion controls in expandable sections. Change history shows recorded outcomes and warns when a write needs checking in Immich.</p>
 <h3 id="maintenance-actions">Maintenance actions<a class="headerlink" href="#maintenance-actions" title="Permanent link">&para;</a></h3>
 <p>The Data area contains maintenance tools that change downloaded caches or Immich reverse geo values.</p>
 <table>
