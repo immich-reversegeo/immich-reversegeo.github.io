@@ -32,6 +32,8 @@ Set the database values where you launch the app, then restart it if you change 
 
 Settings and City Resolver show whether changes are saved. **Save changes** saves the values present when you click it. If you keep editing during a save, those later edits stay pending for another save. Leaving an editor with unsaved changes asks for confirmation.
 
+The save bar stays available as you scroll. Settings validates enabled schedules and processing limits before saving; correct the displayed error before trying again.
+
 The two editors save their own sections, so saving City Resolver does not overwrite processing or schedule changes made elsewhere. **Test Connection** checks the environment-backed database connection without saving settings.
 
 Saving replaces the settings file only after the new values have been written completely. If a save fails, the previous file remains available. Database credentials stay in the environment.
@@ -75,6 +77,8 @@ The Settings page lets you control:
 - whether every asset is written to the log
 
 Most users should stay on the preset schedule options. Custom cron expressions can also schedule infrequent runs, such as once per year. Manual runs from the dashboard still work even when automatic scheduling is disabled.
+
+All schedule times use **UTC**. Settings previews the next occurrence in your browser's timezone; local clock changes do not change the UTC schedule. The preview reflects your current edits and applies only after saving. Memory tuning, batch size, pause between batches, and parallel workers are under **Advanced Processing Limits**. The page shows effective batch and worker limits, including low-memory overrides.
 
 ### Schedule
 

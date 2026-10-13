@@ -1599,6 +1599,7 @@ The Settings page is intentionally small. Most users only need to check the data
 
 <h2 id="saving-settings">Saving settings<a class="headerlink" href="#saving-settings" title="Permanent link">&para;</a></h2>
 <p>Settings and City Resolver show whether changes are saved. <strong>Save changes</strong> saves the values present when you click it. If you keep editing during a save, those later edits stay pending for another save. Leaving an editor with unsaved changes asks for confirmation.</p>
+<p>The save bar stays available as you scroll. Settings validates enabled schedules and processing limits before saving; correct the displayed error before trying again.</p>
 <p>The two editors save their own sections, so saving City Resolver does not overwrite processing or schedule changes made elsewhere. <strong>Test Connection</strong> checks the environment-backed database connection without saving settings.</p>
 <p>Saving replaces the settings file only after the new values have been written completely. If a save fails, the previous file remains available. Database credentials stay in the environment.</p>
 <h2 id="photo-previews-and-immich-links">Photo previews and Immich links<a class="headerlink" href="#photo-previews-and-immich-links" title="Permanent link">&para;</a></h2>
@@ -1648,6 +1649,7 @@ The Settings page is intentionally small. Most users only need to check the data
 <li>whether every asset is written to the log</li>
 </ul>
 <p>Most users should stay on the preset schedule options. Custom cron expressions can also schedule infrequent runs, such as once per year. Manual runs from the dashboard still work even when automatic scheduling is disabled.</p>
+<p>All schedule times use <strong>UTC</strong>. Settings previews the next occurrence in your browser's timezone; local clock changes do not change the UTC schedule. The preview reflects your current edits and applies only after saving. Memory tuning, batch size, pause between batches, and parallel workers are under <strong>Advanced Processing Limits</strong>. The page shows effective batch and worker limits, including low-memory overrides.</p>
 <div class="feature-grid">
   <div class="card">
     <h3>Schedule</h3>

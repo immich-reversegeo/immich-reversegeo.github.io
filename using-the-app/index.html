@@ -1352,7 +1352,7 @@
 <p>This page covers the day-to-day UI for Immich ReverseGeo after setup is complete.</p>
 <p>For install-time settings such as database values, schedules, and processing limits, see <a href=".././configuration/">Configuration</a>.
 For a source-by-source explanation of the geographic data behind the app, see <a href=".././data-sources/">Data Sources</a>.</p>
-<p>The sidebar keeps the main tools available and includes <strong>Help &amp; setup</strong> for the public guides. Browser tab titles identify the current tool.</p>
+<p>Navigation groups library corrections, country caches, and advanced settings. On smaller screens, use <strong>Open Navigation</strong> to show the tools. Keyboard users can use <strong>Skip to content</strong>. <strong>Help &amp; setup</strong> opens the public guides, and browser tab titles identify the current tool.</p>
 <h2 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h2>
 <p>Use <code>Run Now</code> on the Dashboard to start a manual processing pass immediately.</p>
 <p>Runs process active assets with GPS coordinates only when <strong>both city and country are missing</strong>. Existing names are kept, even if they are incorrect. Assets on the skip list are excluded until you clear that list under Data. The unprocessed count includes eligible assets that may still be on the skip list.</p>
@@ -1360,16 +1360,18 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <ul>
 <li>it works even if automatic scheduling is turned off</li>
 <li>it uses your current Settings values for batch size, delay, parallelism, and airport matching</li>
-<li>the Dashboard shows live progress, recent activity, and the last completed run</li>
+<li>the Dashboard shows assets checked, updated, skipped, and failed, plus recent activity</li>
+<li>the last run remains labelled Completed, Completed with errors, Cancelled, or Failed</li>
 <li><code>Cancel</code> stops the current run</li>
 </ul>
 <p>Processing selects GPS-tagged assets only when both city and country are missing (stored as <code>NULL</code>). To correct existing location names, back up the database and use a targeted reset from <a href="#data-tools">Data tools</a> before reprocessing.</p>
-<p>Run completion and activity timestamps use your browser's local timezone, shown beside each time. This does not change the processing schedule.</p>
+<p>Progress counts examined assets, including those already on the skip list. Missing Location Names includes assets on the skip list; On the Skip List shows the stored count loaded before the run and refreshed afterwards. Cancelling keeps location names already written. A completed pass does not mean every asset received a location.</p>
+<p>Run-end and activity timestamps use your browser's local timezone, shown beside each time. This does not change the UTC processing schedule.</p>
 <h2 id="lookup">Lookup<a class="headerlink" href="#lookup" title="Permanent link">&para;</a></h2>
 <p>Use the Lookup page when you want to test a coordinate before running a full processing pass.</p>
 <ul>
 <li>paste or type coordinates to see how the resolver behaves for that point</li>
-<li>it shows the country match, cached administrative area match, optional airport match, and final values that would be written</li>
+<li>it shows the final proposed values first; expand <strong>Source details and nearby places</strong> or <strong>Lookup Trace</strong> to investigate how they were chosen</li>
 <li><code>Include bundled airport infrastructure lookup</code> lets you test with or without airport matching for that lookup</li>
 <li><code>Include nearby places</code> adds a slower live Overture search for investigation. It shows nearby suggestions and a small sample of excluded places; it does not change the location written to Immich</li>
 <li><code>Prefer cached GADM administrative areas</code> switches the administrative area part of the lookup to an experimental on-demand GADM cache for that country; country detection still starts with the bundled Overture country data</li>
@@ -1382,20 +1384,21 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <p><a id="preview-location-corrections"></a></p>
 <h3 id="location-management">Location Management<a class="headerlink" href="#location-management" title="Permanent link">&para;</a></h3>
 <p>Use the tabs in <strong>Location Management</strong> to switch between Overview, Scan &amp; Review, Saved Scans, and Change History. The highlighted tab shows your current section.</p>
-<p>Open <strong>Data → Location Management → Scan &amp; Review</strong> to compare existing city, state, and country names with proposed values from your current processing settings. Scanning is read-only; applying selected changes is a separate confirmed action. Existing preview URLs and saved reports remain available.</p>
+<p>Open <strong>Library &amp; Data → Location Management → Scan &amp; Review</strong> to compare existing city, state, and country names with proposed values from your current processing settings. Scanning is read-only; applying selected changes is a separate confirmed action. Existing preview URLs and saved reports remain available.</p>
 <ol>
 <li>Choose pasted asset GUIDs, an exact existing city/state/country name, or the whole library.</li>
 <li>Start the scan. It checks up to 100 assets per page and may download country caches. Every scope includes only assets with both GPS coordinates. It does not write to Immich or change the skip list.</li>
-<li>Review the existing and proposed values. The <strong>Ready to apply</strong> view shows differences that have not yet been attempted. Different does not necessarily mean better: test unfamiliar results in Lookup using the coordinates shown in the table.</li>
+<li>Review the existing and proposed values. The <strong>Ready to apply</strong> view shows differences that have not yet been attempted. Different does not necessarily mean better: use <strong>Inspect in Lookup</strong> on a row to investigate unfamiliar results, then return to your review.</li>
 <li>Select only the assets you want to correct. Selections are kept across review pages. Open <strong>Review Selected Changes</strong>, inspect the exact existing and proposed names, and take an <a href="https://docs.immich.app/administration/backup-and-restore/">Immich database backup</a>.</li>
 <li>Acknowledge the confirmation and choose <strong>Confirm Apply</strong>. The app writes the saved proposed names directly; no reset or processing run is needed. Each operation supports up to 1,000 selected differences. Its results appear beside the assets and in <strong>Change History</strong>.</li>
 </ol>
 <p>In live and saved scans, changed characters are highlighted in both the existing and proposed names. The comparison is exact, so punctuation, capitalization, and spaces can mark a name as different even when it refers to the same place. Changed spaces appear as <code>␠</code>; other invisible characters use symbols or Unicode codes. Hover over a highlight to see its character codes. An empty value appears as <code>(empty)</code> and a missing value as <code>—</code>.</p>
 <p><strong>Show only different values</strong> is checked by default in live and saved scans. It combines with the status filter below. Uncheck it to include unchanged, unresolved, and failed results; choose <strong>All results</strong> or <strong>Needs attention</strong> to inspect them.</p>
 <p>The <strong>Show results</strong> filter offers <strong>Ready to apply</strong>, <strong>Applied</strong>, <strong>Needs attention</strong>, and <strong>All results</strong>. Applied changes leave Ready to apply immediately, and the page fills with the next available differences. They remain visible in Applied, All results, and Change History. Needs attention includes skipped, pending, interrupted, unresolved, and failed lookup results. Undone changes remain in All results and Change History. Resume pending writes from Change History; inspect uncertain outcomes in Immich. Run a new scan before applying skipped or undone assets again.</p>
+<p>Live scan inputs, results, filters, and selections survive navigation within the current browser session. Leaving an active scan cancels it; return to Scan &amp; Review to continue after cancellation finishes. Reloading or losing the session clears the live review state; completed results remain in Saved Scans. New scans reset the live selection and filters.</p>
 <p>Browse saved results from every checked batch with <strong>Previous 100 Results</strong> and <strong>Next 100 Results</strong>. <strong>Scan Next 100</strong> adds results without bringing already handled differences back into the ready list. <strong>Start Scan</strong> clears the selection and begins a new snapshot. After cancellation, you can review completed results and continue after the last checked asset. If no results have been saved yet, continuation starts at the beginning.</p>
 <p><strong>Continuous scan</strong> advances through all matching assets automatically. Set <strong>Pause after this many new differences</strong> to stop for review after a chosen number of changed results; use <strong>0</strong> to scan to the end. When the limit is reached, an amber <strong>Paused for review</strong> notice shows how many new differences were found. A pause banner stays above the results while you scroll, with a <strong>Continue Scan</strong> button. Reviewing or applying changes leaves the scan paused until you continue. <strong>Continue Scan</strong> resumes after the last saved asset and pauses after the next group of differences. Unresolved results and errors do not count as differences. The review table shows up to 100 results matching your filter from all checked batches; the saved report contains every completed result.</p>
-<p>Keep the scan page open while scanning. Navigating away, reloading, or closing the browser stops the scan when the page disconnects. It is not a background job. Saved results remain available, but resuming a scan requires the original page to stay open; otherwise start a new scan.</p>
+<p>Keep the scan page open while scanning. Navigating away, reloading, or closing the browser stops the scan when the page disconnects. It is not a background job. Saved results remain available. Return to the live review within the same browser session, or use Saved Scans → Continue scan after a reload or restart.</p>
 <p>Choose <strong>Order by → Nearby coordinates</strong> to group photos into quarter-degree map tiles, helping nearby lookups reuse cached data. This can reduce switching between country caches, particularly with the bounded country cache, but each uncached country still needs preparing. Sorting can increase database query time for large libraries; use <strong>Asset GUID</strong> order if loading matching assets takes too long. Start a new scan to change the order. Both orders support continuing after the last checked asset on cancellation.</p>
 <p>While a scan runs, the page shows the current asset, lookup step or country-cache wait, and elapsed time. The progress bar counts checked assets, not downloaded data. Preparing a country for the first time can take several minutes; later lookups reuse its cache. To investigate a long wait, open <strong>Logs</strong> from the scan page. Scan events include a short identifier so you can follow one preview's start, cache waits, failures, cancellation, and page summaries. These events also appear in the container logs. Successful cached lookups are summarized rather than logged for every asset.</p>
 <p>A scan counts all matching assets with both GPS coordinates when you start and shows the total checked and percentage across manual pages and continuous scans. Estimated remaining processing time appears after five checked assets and excludes review pauses. Country-cache downloads can change the estimate. Use <strong>Scan Next 100</strong> or <strong>Continue Scan</strong> to resume after a pause. If assets are added, deleted, or edited during the preview, the starting total may no longer match the final count.</p>
@@ -1406,6 +1409,7 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <p>Reports store the selection, processing settings, asset GUIDs, GPS coordinates, names, and lookup failures in <code>location-previews.db</code> under your <code>/data</code> volume. Preserve that volume to keep reports across container replacements. Reports stay until you delete them from the report page; deleting a report removes only its local snapshot. A report marked <strong>More assets available</strong>, <strong>Paused</strong>, <strong>Cancelled</strong>, or <strong>Interrupted</strong> covers only the assets already checked. Choose Continue scan to check remaining assets after a restart, using the original options.</p>
 <p>Saved values may be out of date if Immich metadata, coordinates, settings, or source data changed afterward. Run a new scan to check current proposals, or review the saved proposals before applying; changed names and coordinates are skipped. If saving fails, the scan stops with an error; results already saved are retained.</p>
 <p>Deleted assets, GUIDs without an Immich metadata row, and assets missing either latitude or longitude are excluded from every scan query, including pasted GUIDs. Unresolved locations and lookup failures are shown separately and cannot be selected for correction. Scanning can help find inconsistent names; it cannot recover missing GPS coordinates or guarantee that a proposed name is correct.</p>
+<p>For the optional reset workflow, choose <strong>Review Reset for Selected Assets</strong> in the live review. The reset page carries your selected GUIDs into a separate count-and-confirm step. Take a database backup, review the fields being cleared, then confirm. Reset does not apply saved proposals; use <strong>Go to Dashboard to Reprocess</strong> afterwards. Reset assets cannot be selected again in that live review until you start a new scan.</p>
 <h4 id="continue-an-unfinished-scan">Continue an unfinished scan<a class="headerlink" href="#continue-an-unfinished-scan" title="Permanent link">&para;</a></h4>
 <p>Saved Scans keeps each scan's status, checked results, original selection and settings, and latest saved position. New scans also save their original asset total, active scan time, batch position, and pause count. A scan interrupted by an app restart is marked <strong>Interrupted</strong>.</p>
 <ol>
@@ -1442,16 +1446,16 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <td>Removes permanently skipped assets so they can be retried on the next run.</td>
 </tr>
 <tr>
-<td><code>Reset All Data</code></td>
-<td>Clears Immich reverse geo <code>city</code>, <code>state</code>, and <code>country</code> values for all matching assets and clears the skip list.</td>
+<td><code>Reset All Location Names</code></td>
+<td>Under Advanced, confirms clearing names from every metadata row with stored names, including deleted assets, and clears the skip list.</td>
 </tr>
 <tr>
-<td><code>Reset Single Item(s)</code></td>
-<td>Clears reverse geo values only for the pasted asset GUIDs and removes those assets from the skip list.</td>
+<td><code>Reset Selected Assets</code></td>
+<td>Reviews a scan selection or pasted GUIDs, then confirms clearing their names and removing them from the skip list.</td>
 </tr>
 <tr>
-<td><code>Reset Specific Locations</code></td>
-<td>Finds assets by an existing city, state, or country value and clears all three reverse geo fields for those matching assets.</td>
+<td><code>Reset by Existing Location</code></td>
+<td>Reviews an explicitly selected city, state, or country and confirms clearing all three fields for matching active assets.</td>
 </tr>
 <tr>
 <td><code>Delete Overture cache</code></td>
@@ -1462,7 +1466,7 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <td>Replaces one downloaded Overture country cache with a fresh copy.</td>
 </tr>
 <tr>
-<td><code>Delete All Overture Divisions</code></td>
+<td><code>Review Deleting All Overture Caches</code></td>
 <td>Removes every downloaded country cache so they will be fetched again on demand later.</td>
 </tr>
 <tr>
@@ -1474,19 +1478,22 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <td>Replaces one downloaded GADM country cache with a fresh copy.</td>
 </tr>
 <tr>
-<td><code>Delete All GADM Caches</code></td>
+<td><code>Review Deleting All GADM Caches</code></td>
 <td>Removes every downloaded GADM cache so they will be fetched again on demand later.</td>
 </tr>
 </tbody>
 </table>
 <p>The Reset Immich Geo Data page only clears reverse geo values in <code>asset_exif</code>. It does not touch any other Immich metadata.</p>
+<p>Reset review rechecks the affected count before writing. If it changes, review the updated count and confirm again. Processing, apply/undo, resets, and cache writes cannot overlap; wait for active work to finish before starting another operation. Reset reports partial completion if names were cleared but skip-list cleanup failed.</p>
+<p>Country Caches supports country names and codes. Deleting a cache does not change Immich metadata; it downloads again when needed. Bulk deletion is under <strong>Cache Maintenance</strong> and requires confirmation. A failed re-download can leave a cache unavailable; check network access, disk space, and permissions before retrying.</p>
 <h2 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
 <p>Use the Logs page when you want to inspect recent activity outside the Dashboard summary.</p>
 <ul>
-<li>filter the in-app log view to all messages, warnings, or errors</li>
+<li>filter the in-app log view to all messages, warnings and errors, or errors only</li>
 <li>download the current filtered view as <code>immich-reversegeo.log</code></li>
 </ul>
 <p>On-screen timestamps use your browser's timezone. Downloaded logs use full UTC timestamps with dates so you can compare activity across systems. While the interactive page is connecting, timestamps are shown in UTC.</p>
+<p>Only the latest 100 activity entries are retained, and they are cleared when the app restarts. <strong>Download Filtered Recent Logs</strong> exports the current filtered entries, not a complete run history. Use container or host logs for older or more detailed diagnostics.</p>
 
 
 
