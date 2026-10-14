@@ -569,6 +569,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="5. Start manual processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correct-existing-location-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Correct existing location names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1148,6 +1165,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="5. Start manual processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correct-existing-location-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Correct existing location names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1197,7 +1231,7 @@ and
 <div class="admonition warning">
 <p class="admonition-title">Back up immich before processing or clearing location data</p>
 <p>Immich ReverseGeo writes <code>city</code>, <code>state</code>, and <code>country</code> values back into immich's database.</p>
-<p>Before you run this against real data, or before you use the Data page to clear existing location fields, create a proper immich database backup first.</p>
+<p>Before processing, applying location corrections, or clearing existing location fields, create a proper immich database backup first.</p>
 <p>Follow the official guide:
 <a href="https://docs.immich.app/administration/backup-and-restore/">Backup and Restore | Immich</a></p>
 </div>
@@ -1257,7 +1291,16 @@ DB_DATABASE_NAME=immich
 <h2 id="5-start-manual-processing">5. Start manual processing<a class="headerlink" href="#5-start-manual-processing" title="Permanent link">&para;</a></h2>
 <p>After checking known coordinates in Lookup, use <code>Run Now</code> from the Dashboard for your first manual pass. A smaller batch size reduces work per batch; it does not limit the total number of assets in the run. Inspect the resulting location names in Immich and use <code>Cancel</code> if you need to stop processing.</p>
 <p>Processing selects GPS-tagged assets only when both the city and country are missing (stored as <code>NULL</code> in the database). Assets with an existing city or country are not selected, even if the other value is missing.</p>
-<p>To correct existing location names, first back up the Immich database. Use <code>Reset Single Item(s)</code> or <code>Reset Specific Locations</code> on the Reset Immich Geo Data page to clear only the affected assets, then run processing again. These actions clear all three location fields—city, state, and country—for the selected assets. See <a href=".././using-the-app/#data-tools">Data tools</a> for the available reset actions.</p>
+<h3 id="correct-existing-location-names">Correct existing location names<a class="headerlink" href="#correct-existing-location-names" title="Permanent link">&para;</a></h3>
+<p>Use <strong>Scan &amp; Review Existing Names</strong> on the Dashboard to open Location Management. Scanning compares existing names with proposed names without changing Immich.</p>
+<ol>
+<li>Start with a few asset GUIDs or one existing location before scanning the whole library.</li>
+<li>Review the differences and use <strong>Inspect in Lookup</strong> to check unfamiliar results. A spelling or punctuation difference does not necessarily mean a better location.</li>
+<li>Select the differences you want, open <strong>Review Selected Changes</strong>, and check the exact names. After taking a database backup, acknowledge the confirmation and choose <strong>Confirm Apply</strong>.</li>
+<li>Refresh those assets in Immich to check the result. Applying writes the reviewed names directly; no reset or processing run is needed.</li>
+</ol>
+<p>You can reopen completed results in <strong>Saved Scans</strong> and inspect applied changes or review an undo in <strong>Change History</strong>. See <a href=".././using-the-app/#location-management">Location Management</a> for continuation, filters, and undo limits.</p>
+<p>For the advanced reset-and-reprocess workflow, use <strong>Reset Selected Assets</strong> or <strong>Reset by Existing Location</strong> on <strong>Reset Immich Geo Data</strong>, then select <strong>Run Now</strong>. Reset clears all three location fields—city, state, and country—for the selected assets. See <a href=".././using-the-app/#maintenance-actions">Maintenance actions</a> before confirming.</p>
 <p>For more on the UI after setup, see <a href=".././using-the-app/">Using the App</a>.</p>
 
 

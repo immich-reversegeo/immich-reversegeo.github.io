@@ -893,6 +893,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#a-scan-shows-differences-but-nothing-is-ready-to-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        A scan shows differences but nothing is ready to apply
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#i-want-to-rerun-everything-from-scratch" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1195,6 +1206,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#a-scan-shows-differences-but-nothing-is-ready-to-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        A scan shows differences but nothing is ready to apply
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#i-want-to-rerun-everything-from-scratch" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1274,7 +1296,7 @@ Most issues come down to one of three things: the app cannot see the right datab
 </div>
 
 <h2 id="the-app-shows-default-db-values-instead-of-my-real-ones">The app shows default DB values instead of my real ones<a class="headerlink" href="#the-app-shows-default-db-values-instead-of-my-real-ones" title="Permanent link">&para;</a></h2>
-<p>The app reads real process environment variables. If you changed Windows user or system environment variables after Visual Studio or your shell was already open, restart that process.</p>
+<p>Open <strong>Settings → Database Connection Details</strong> and check the read-only values. Change database variables in Docker Compose or your host environment, then recreate or restart Immich ReverseGeo. Editing <code>settings.json</code> does not change database credentials. Use <strong>Test Connection</strong> after restarting.</p>
 <h2 id="country-lookup-says-no-match">Country lookup says no match<a class="headerlink" href="#country-lookup-says-no-match" title="Permanent link">&para;</a></h2>
 <p>Check:</p>
 <ul>
@@ -1285,6 +1307,9 @@ Most issues come down to one of three things: the app cannot see the right datab
 <h2 id="a-country-cache-download-is-slow">A country cache download is slow<a class="headerlink" href="#a-country-cache-download-is-slow" title="Permanent link">&para;</a></h2>
 <p>The first lookup for a new country can take longer because the per-country Overture division cache must be created locally.</p>
 <p>Large countries can also produce much larger cache files than small ones.</p>
+<p>Open <strong>Country Caches</strong> or check <strong>Preparing country caches</strong> on the scan page. The display shows the source, country code, stage, and elapsed time. GADM can show file bytes and a transfer percentage; Overture shows an estimated query percentage when available. Building and validating the cache happen afterward, so 100% of a transfer or query does not mean the cache is ready.</p>
+<p><a class="glightbox" data-title="Country Caches showing an Overture query in progress" data-type="image" href="../assets/screenshots/cache-progress.png"><img alt="Country Caches showing an Overture query in progress" class="doc-screenshot on-glb" src="../assets/screenshots/cache-progress.png" /></a></p>
+<p>If the stage stays unchanged, inspect <strong>Logs</strong> and check internet access, free space, and write permissions for <code>/data</code>. An increasing elapsed time does not prove the download is advancing. Avoid repeatedly re-downloading a country while investigating. See <a href=".././using-the-app/#scan-progress-and-country-caches">cache preparation</a> for the progress limits.</p>
 <div class="feature-grid">
   <div class="card">
     <h3>First run is slower</h3>
@@ -1300,7 +1325,8 @@ Most issues come down to one of three things: the app cannot see the right datab
 <p>Things that affect throughput:</p>
 <ul>
 <li>batch size</li>
-<li>max parallelism</li>
+<li>parallel workers</li>
+<li>low-memory mode and country-boundary cache settings</li>
 <li>database latency to the immich PostgreSQL instance</li>
 <li>first-time per-country cache creation</li>
 </ul>
@@ -1311,7 +1337,7 @@ Most issues come down to one of three things: the app cannot see the right datab
   </div>
   <div class="step-card">
     <h3>Then tune settings</h3>
-    <p>Batch size and max parallelism usually make the biggest difference once the needed country data is already present.</p>
+    <p>Check effective batch and worker limits under Settings → Processing. Low-memory mode uses one worker even if your saved parallel-worker value is higher.</p>
   </div>
 </div>
 
@@ -1320,15 +1346,17 @@ Most issues come down to one of three things: the app cannot see the right datab
 <p>Check whether the restarts line up with processing runs:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>inspect<span class="w"> </span>--format<span class="w"> </span><span class="s1">'{{.RestartCount}} {{.State.OOMKilled}}'</span><span class="w"> </span>immich-reversegeo
 </code></pre></div>
-<p>If <code>OOMKilled</code> is <code>true</code>, or the logs end with <code>System.OutOfMemoryException</code>, raise the memory
-ceiling. The compose snippet in <a href=".././installation/#docker">Installation</a> sets <code>mem_limit: 2g</code>,
-as a starting memory budget. If your Compose file has no <code>mem_limit</code>, add one to set a total
-container memory budget that the .NET runtime can take into account. Large country caches or
-higher parallelism may require a higher limit.</p>
-<p>Lowering the limit is not a fix. The bundled country boundary data alone needs several hundred
-megabytes once loaded, so a limit below that makes the container fail straight away.</p>
-<p>Reducing <strong>max parallelism</strong> in processing settings also lowers peak memory, at the cost of
-throughput.</p>
+<p>If <code>OOMKilled</code> is <code>true</code>, or the logs end with <code>System.OutOfMemoryException</code>:</p>
+<ol>
+<li>Enable <strong>Settings → Processing → Low-memory mode</strong>, save, and start a new run. It uses one worker, batches of at most 25, and country boundaries read from disk. Work already in progress keeps its current limits.</li>
+<li>Compare the first pass that prepares country caches with later passes that reuse them. Downloads and geometry checks can still need additional RAM.</li>
+<li>Check the container memory limit. The <a href=".././installation/#docker">installation snippet</a> uses <code>mem_limit: 2g</code> as a starting budget; large caches may require more. Lowering the limit does not reduce the app's memory needs.</li>
+</ol>
+<p>If you want to retain normal parallelism, try <strong>Limit country boundary cache</strong> under <strong>Advanced Processing Limits</strong>, or reduce <strong>Parallel workers</strong>. Normal mode also releases idle country boundaries after five minutes by default. Released memory may remain available to the runtime before the host's RAM figure falls.</p>
+<p>These settings trade speed and disk reads for lower memory use; none caps total app memory. Test known coordinates in Lookup before comparing runs. See <a href=".././configuration/#low-memory-mode">memory settings</a> for the options and limits.</p>
+<h2 id="a-scan-shows-differences-but-nothing-is-ready-to-apply">A scan shows differences but nothing is ready to apply<a class="headerlink" href="#a-scan-shows-differences-but-nothing-is-ready-to-apply" title="Permanent link">&para;</a></h2>
+<p><strong>Differences found</strong> counts the original scan differences, including ones already handled. <strong>Ready to apply</strong> shows only differences that have not been attempted. Switch to <strong>Applied</strong>, <strong>Needs attention</strong>, or <strong>All results</strong> to inspect outcomes. Uncheck <strong>Show only different values</strong> to include unchanged, unresolved, and failed results.</p>
+<p>Open <strong>Change History</strong> to review pending apply or undo work. For <strong>Needs review</strong>, check the asset in Immich before another change. Run a new scan for skipped or undone assets, updated settings, or fresh proposals. See <a href=".././using-the-app/#applying-saved-proposals">Applying saved proposals</a>.</p>
 <h2 id="i-want-to-rerun-everything-from-scratch">I want to rerun everything from scratch<a class="headerlink" href="#i-want-to-rerun-everything-from-scratch" title="Permanent link">&para;</a></h2>
 <p>The Data page can clear existing <code>city</code>, <code>state</code>, and <code>country</code> values in immich.</p>
 <p>See <a href=".././using-the-app/">Using the App</a> for the reset options and what each one does.</p>

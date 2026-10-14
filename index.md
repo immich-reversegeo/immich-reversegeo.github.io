@@ -14,7 +14,7 @@ Open **Lookup**, paste coordinates from a photo you know, and inspect the countr
 
 Results depend on the available source data. It cannot add missing GPS coordinates or guarantee a better name for every point. Compare known locations in Lookup first, then choose the settings that fit your library.
 
-To replace existing location names, back up the database and clear the affected assets' location fields before reprocessing. See [Start manual processing](<https://immich-reversegeo.github.io/getting-started/#5-start-manual-processing>) for the workflow.
+To correct existing names, use **Location Management** to scan your photos, review proposed differences, and apply only the changes you select. Back up the database before applying. Saved scans let you continue unfinished work; Change History records applied names and supports undo when the metadata has not changed. See [Correct existing location names](<https://immich-reversegeo.github.io/getting-started/#correct-existing-location-names>).
 
 See [Using the App](<https://immich-reversegeo.github.io/using-the-app/index.md>) for the workflow and [Data Sources](<https://immich-reversegeo.github.io/data-sources/index.md>) for coverage and licence limits.
 

@@ -6,6 +6,14 @@ Technical implementation notes live in [CHANGELOG.md](<https://github.com/immich
 
 ## Unreleased
 
+- Updated the [app guide](<https://immich-reversegeo.github.io/using-the-app/index.md>) with current screenshots and the [quick-start correction workflow](<https://immich-reversegeo.github.io/getting-started/#correct-existing-location-names>). Added help for slow cache preparation, memory limits, and handled scan differences.
+- Location reviews keep selection actions within reach and move keyboard focus into and back from confirmation. Saved Scans and Change History can filter unfinished or pending work across all pages. Navigation and comparison tables work on smaller screens.
+- Settings shows schedules in UTC, previews the next run in your browser's timezone, validates changes before saving, and displays effective processing limits. The save bar stays available while scrolling.
+- Scans show checked totals and estimated remaining processing time. Highlighted characters make spelling, punctuation, and invisible differences visible in both existing and proposed names.
+- Exact administrative boundary matches now take priority over neighbouring tolerance-only matches. Overture parent names prefer English when available; re-download an older country cache and check Lookup before applying corrections.
+- Country-cache preparation shows its current stage and elapsed time, with file-transfer or estimated query progress when available. Query progress is not a percentage of the whole cache; see [cache preparation](<https://immich-reversegeo.github.io/using-the-app/#scan-progress-and-country-caches>).
+- Scripts can start a processing pass with `POST /api/processing/run`. The endpoint needs no API key, so keep it private like the web UI. An accepted response does not mean processing succeeded; see [scripted runs](<https://immich-reversegeo.github.io/using-the-app/#start-a-run-from-a-script>).
+- Logs has a **Follow logs** toggle and a panel that fills the available page height. Connection recovery explains how to continue saved scans and check interrupted changes. Browser favicons are clearer at small sizes.
 - Continue unfinished scans from **Saved Scans** after closing the page or restarting the app. The app restores the original options, keeps earlier results, and resumes after the last saved asset. Saved reports also show pause status and recorded progress.
 - Scans that reach their difference limit now show a clear **Paused for review** notice and a **Continue Scan** button that stays visible while reviewing results.
 - **Show only different values** is enabled by default in live and saved scans. Unchanged results no longer load photo previews, even when you choose to show them.

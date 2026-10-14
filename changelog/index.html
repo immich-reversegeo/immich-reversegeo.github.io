@@ -1229,7 +1229,19 @@
 <p>Technical implementation notes live in <a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/CHANGELOG.md">CHANGELOG.md</a>.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Continue unfinished scans from <strong>Saved Scans</strong> after closing the page or restarting the app. The app restores the original options, keeps earlier results, and resumes after the last saved asset. Saved reports also show pause status and recorded progress.</li>
+<li>Updated the <a href=".././using-the-app/">app guide</a> with current screenshots and the <a href=".././getting-started/#correct-existing-location-names">quick-start correction workflow</a>. Added help for slow cache preparation, memory limits, and handled scan differences.</li>
+<li>Location reviews keep selection actions within reach and move keyboard focus into and back from confirmation. Saved Scans and Change History can filter unfinished or pending work across all pages. Navigation and comparison tables work on smaller screens.</li>
+<li>Settings shows schedules in UTC, previews the next run in your browser's timezone, validates changes before saving, and displays effective processing limits. The save bar stays available while scrolling.</li>
+<li>Scans show checked totals and estimated remaining processing time. Highlighted characters make spelling, punctuation, and invisible differences visible in both existing and proposed names.</li>
+<li>Exact administrative boundary matches now take priority over neighbouring tolerance-only matches. Overture parent names prefer English when available; re-download an older country cache and check Lookup before applying corrections.</li>
+<li>Country-cache preparation shows its current stage and elapsed time, with file-transfer or estimated query progress when available. Query progress is not a percentage of the whole cache; see <a href=".././using-the-app/#scan-progress-and-country-caches">cache preparation</a>.</li>
+<li>Scripts can start a processing pass with <code>POST /api/processing/run</code>. The endpoint needs no API key, so keep it private like the web UI. An accepted response does not mean processing succeeded; see <a href=".././using-the-app/#start-a-run-from-a-script">scripted runs</a>.</li>
+<li>
+<p>Logs has a <strong>Follow logs</strong> toggle and a panel that fills the available page height. Connection recovery explains how to continue saved scans and check interrupted changes. Browser favicons are clearer at small sizes.</p>
+</li>
+<li>
+<p>Continue unfinished scans from <strong>Saved Scans</strong> after closing the page or restarting the app. The app restores the original options, keeps earlier results, and resumes after the last saved asset. Saved reports also show pause status and recorded progress.</p>
+</li>
 <li>Scans that reach their difference limit now show a clear <strong>Paused for review</strong> notice and a <strong>Continue Scan</strong> button that stays visible while reviewing results.</li>
 <li><strong>Show only different values</strong> is enabled by default in live and saved scans. Unchanged results no longer load photo previews, even when you choose to show them.</li>
 <li>Applying a batch now clears it from <strong>Ready to apply</strong> so you can review the next differences. Use <strong>Applied</strong>, <strong>Needs attention</strong>, or <strong>All results</strong> to inspect saved outcomes without applying the same snapshot again.</li>

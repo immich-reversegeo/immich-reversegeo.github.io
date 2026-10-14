@@ -744,6 +744,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#reviewing-existing-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reviewing existing names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#active-data-sources" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1114,6 +1125,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#reviewing-existing-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reviewing existing names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#active-data-sources" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1180,7 +1202,7 @@ You do not need to understand the internals to use Immich ReverseGeo, but the ov
 <div class="feature-grid">
   <div class="card">
     <h3>Web app</h3>
-    <p>The web UI handles settings, manual processing, download management, lookups, and logs.</p>
+    <p>The web UI handles settings, processing, coordinate lookups, country caches, location reviews, saved scans, change history, and logs.</p>
   </div>
   <div class="card">
     <h3>Built-in data</h3>
@@ -1201,6 +1223,10 @@ You do not need to understand the internals to use Immich ReverseGeo, but the ov
 <li>optionally queries bundled airport infrastructure</li>
 <li>writes city/state/country back to immich when a complete result is available</li>
 </ol>
+<h3 id="reviewing-existing-names">Reviewing existing names<a class="headerlink" href="#reviewing-existing-names" title="Permanent link">&para;</a></h3>
+<p>Location Management uses the same location matching to scan assets with GPS coordinates, including those with existing names. Scanning saves the existing and proposed names without changing Immich. You can reopen saved results or continue unfinished scans later.</p>
+<p>Applying selected differences writes the exact reviewed names directly, after checking that the existing names and coordinates still match the snapshot. Change History records previous names and outcomes, with undo available when the applied metadata has not changed. These records live under <code>/data</code>, so preserve that volume across container replacements. They do not replace an Immich database backup.</p>
+<p>See <a href=".././using-the-app/#location-management">Location Management</a> for the review, confirmation, and recovery steps.</p>
 <h3 id="active-data-sources">Active data sources<a class="headerlink" href="#active-data-sources" title="Permanent link">&para;</a></h3>
 <div class="feature-grid">
   <div class="card">
