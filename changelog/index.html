@@ -761,6 +761,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#020-2026-10-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.2.0 — 2026-10-14
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#010-2026-10-12" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1129,6 +1140,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#020-2026-10-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.2.0 — 2026-10-14
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#010-2026-10-12" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1228,8 +1250,17 @@
 <p>This is the public-facing release summary for Immich ReverseGeo.</p>
 <p>Technical implementation notes live in <a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/CHANGELOG.md">CHANGELOG.md</a>.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<h2 id="020-2026-10-14">0.2.0 — 2026-10-14<a class="headerlink" href="#020-2026-10-14" title="Permanent link">&para;</a></h2>
+<p>This release adds selected location corrections and guarded undo, resumable scans, clearer reviews, and improved administrative matching.</p>
 <ul>
-<li>Updated the <a href=".././using-the-app/">app guide</a> with current screenshots and the <a href=".././getting-started/#correct-existing-location-names">quick-start correction workflow</a>. Added help for slow cache preparation, memory limits, and handled scan differences.</li>
+<li>Outdated Overture country caches refresh automatically when used. If an update fails, the app keeps a compatible previous cache and retries later. Check known coordinates in <a href=".././using-the-app/#lookup">Lookup</a> before applying changed names.</li>
+<li>Overture cache preparation now shows separate query and cache-building stages. A query percentage describes that stage, not the entire download.</li>
+<li>
+<p>Fixed stable Docker image promotion and added recovery for an already-built release image.</p>
+</li>
+<li>
+<p>Updated the <a href=".././using-the-app/">app guide</a> with current screenshots and the <a href=".././getting-started/#correct-existing-location-names">quick-start correction workflow</a>. Added help for slow cache preparation, memory limits, and handled scan differences.</p>
+</li>
 <li>Location reviews keep selection actions within reach and move keyboard focus into and back from confirmation. Saved Scans and Change History can filter unfinished or pending work across all pages. Navigation and comparison tables work on smaller screens.</li>
 <li>Settings shows schedules in UTC, previews the next run in your browser's timezone, validates changes before saving, and displays effective processing limits. The save bar stays available while scrolling.</li>
 <li>Scans show checked totals and estimated remaining processing time. Highlighted characters make spelling, punctuation, and invisible differences visible in both existing and proposed names.</li>
