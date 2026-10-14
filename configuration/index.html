@@ -1711,6 +1711,7 @@ The Settings page is intentionally small. Most users only need to check the data
 <p>Use Lookup on a known coordinate before and after the idle period to check the result and rebuild delay. This setting reduces retained country memory; it is not a total RAM cap and does not repair incorrect location data.</p>
 <h3 id="gadm-administrative-areas">GADM administrative areas<a class="headerlink" href="#gadm-administrative-areas" title="Permanent link">&para;</a></h3>
 <p>When enabled, GADM adds another country-level administrative boundary source for <code>state</code> and <code>city</code> matching.</p>
+<p>Processing and location scans query the preferred source first. If it supplies both state and city, the other source is skipped. Otherwise, the other source fills only missing fields. This can avoid unnecessary country-cache downloads; it cannot repair incorrect names supplied by the preferred source. Lookup still queries both enabled sources so you can compare their results before changing your preference.</p>
 <p>Recommended starting point:</p>
 <ul>
 <li>turn <code>Enable GADM administrative areas</code> on</li>
