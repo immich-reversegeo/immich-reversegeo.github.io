@@ -674,6 +674,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#start-a-run-from-a-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Start a run from a script
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lookup" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1202,6 +1213,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#start-a-run-from-a-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Start a run from a script
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lookup" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1389,6 +1411,31 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 <p>Use <strong>Scan &amp; Review Existing Names</strong> on the Dashboard for the <strong>Scan → Review → Apply</strong> workflow. Reset and reprocessing remain available under <strong>Advanced: reset and reprocess</strong>; back up the database before either reset or apply.</p>
 <p>Progress counts examined assets, including those already on the skip list. Missing Location Names includes assets on the skip list; On the Skip List shows the stored count loaded before the run and refreshed afterwards. Cancelling keeps location names already written. A completed pass does not mean every asset received a location.</p>
 <p>Run-end and activity timestamps use your browser's local timezone, shown beside each time. This does not change the UTC processing schedule.</p>
+<h2 id="start-a-run-from-a-script">Start a run from a script<a class="headerlink" href="#start-a-run-from-a-script" title="Permanent link">&para;</a></h2>
+<p>After a photo sync, a script can start the same processing pass as <strong>Run Now</strong> with <code>POST /api/processing/run</code>. Call it after Immich has imported the assets and extracted their GPS metadata.</p>
+<p>Call the URL from your script:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--fail-with-body<span class="w"> </span>--request<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/processing/run
+</code></pre></div>
+<p>Use the host and published port reachable from your script. No API key or request body is needed. <code>GET</code> does not start a run. Like the web UI, this endpoint has no built-in authentication: keep the service on your private network. Anyone who can reach it can start processing.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP response</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>202</code> with <code>status: accepted</code></td>
+<td>The background pass was accepted. Check Dashboard or Logs for progress and the final outcome.</td>
+</tr>
+<tr>
+<td><code>409</code> with <code>status: busy</code></td>
+<td>Processing or maintenance is active. No additional run was queued; retry after it finishes if newly imported assets still need processing.</td>
+</tr>
+</tbody>
+</table>
+<p>The response returns immediately; <code>202</code> does not mean processing succeeded or that every photo received a location. The pass uses your saved processing settings even when scheduling is disabled. It fills missing city and country names, keeps existing names, and respects the skip list, just like a Dashboard run. It cannot process media that Immich has not imported yet or that lacks GPS coordinates.</p>
 <h2 id="lookup">Lookup<a class="headerlink" href="#lookup" title="Permanent link">&para;</a></h2>
 <p>Use the Lookup page when you want to test a coordinate before running a full processing pass.</p>
 <ul>
