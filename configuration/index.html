@@ -1749,6 +1749,7 @@ The Settings page is intentionally small. Most users only need to check the data
 <p>This keeps the main Settings page simple while still giving you a way to fix countries where the default city result is not what you want.</p>
 <h3 id="what-it-actually-changes">What it actually changes<a class="headerlink" href="#what-it-actually-changes" title="Permanent link">&para;</a></h3>
 <p>The City Resolver controls which city-like area the app prefers. When Overture provides parent information for that area, the app also uses it to select a consistent state.</p>
+<p>An area that contains the coordinate exactly takes priority over a neighbouring area that matches only through boundary tolerance. Tolerance remains a fallback when no eligible area contains the point exactly. Lookup labels these matches as <strong>exact</strong> or <strong>tolerance only</strong>. This avoids choosing a smaller neighbour near a boundary, but cannot correct inaccurate source polygons. Test affected coordinates in Lookup before changing broader or tighter matching.</p>
 <p>It is useful when the app finds the right general area, but chooses the wrong name for your taste. For example:</p>
 <ul>
 <li>it picks a district instead of the wider city</li>
