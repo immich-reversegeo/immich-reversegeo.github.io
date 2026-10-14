@@ -1503,7 +1503,7 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 </table>
 <p>The response returns immediately; <code>202</code> does not mean processing succeeded or that every photo received a location. The pass uses your saved processing settings even when scheduling is disabled. It fills missing city and country names, keeps existing names, and respects the skip list, just like a Dashboard run. It cannot process media that Immich has not imported yet or that lacks GPS coordinates.</p>
 <h2 id="lookup">Lookup<a class="headerlink" href="#lookup" title="Permanent link">&para;</a></h2>
-<p>Use the Lookup page when you want to test a coordinate before running a full processing pass.</p>
+<p>Use the Lookup page when you want to test a coordinate before running a full processing pass. Pasted coordinates support decimal pairs, compass directions, named latitude/longitude pairs, and degrees/minutes/seconds. Use digits <code>0</code>–<code>9</code> and a decimal point. Latitude must be between −90 and 90 and longitude between −180 and 180; DMS minutes and seconds must be below 60. Invalid pasted values show a parse error and do not start a lookup.</p>
 <ul>
 <li>paste or type coordinates to see how the resolver behaves for that point</li>
 <li>it shows the final proposed values first; expand <strong>Source details and nearby places</strong> or <strong>Lookup Trace</strong> to investigate how they were chosen</li>
@@ -1513,6 +1513,7 @@ For a source-by-source explanation of the geographic data behind the app, see <a
 </ul>
 <p><a class="glightbox" data-title="Coordinate Lookup showing proposed location names and expandable source details" data-type="image" href="../assets/screenshots/lookup.png"><img alt="Coordinate Lookup showing proposed location names and expandable source details" class="doc-screenshot on-glb" src="../assets/screenshots/lookup.png" /></a></p>
 <p>Click the screenshot to enlarge it. Lookup previews do not update Immich assets.</p>
+<p>Nearby-place suggestions recognise Overture's current labels for religious sites, performance venues, and public offices. Routine shops, storage businesses, and clinics remain excluded. The filters preserve the original category labels and source attribution shown in Lookup. Use these suggestions to investigate a location; they do not replace the proposed city or state.</p>
 <h3 id="country-lookup-failures">Country lookup failures<a class="headerlink" href="#country-lookup-failures" title="Permanent link">&para;</a></h3>
 <p>Lookup distinguishes a point outside the bundled country coverage from a matched boundary whose country code cannot be resolved. If the country code cannot be resolved, check that the bundled country database and country catalog belong to the same app release. A missing boundary match can require newer geographic data; changing city settings will not add country coverage.</p>
 <h2 id="data-tools">Data tools<a class="headerlink" href="#data-tools" title="Permanent link">&para;</a></h2>

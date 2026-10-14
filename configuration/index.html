@@ -1584,7 +1584,7 @@ The Settings page is intentionally small. Most users only need to check the data
 <li><code>DB_PASSWORD</code></li>
 <li><code>DB_DATABASE_NAME</code></li>
 </ul>
-<p>These values are required because the app reads and updates immich data directly.</p>
+<p>These values are required because the app reads and updates Immich data directly. Passwords containing semicolons, quotes, or spaces are supported; pass the exact password through <code>DB_PASSWORD</code>, following your container or host environment's quoting rules.</p>
 <p>For the database host, a nonblank <code>DB_HOST</code> takes precedence over <code>DB_HOSTNAME</code>. If neither has a nonblank value, the host defaults to <code>database</code>. You can reuse Immich's <code>DB_HOSTNAME</code> value for an external database without renaming it.</p>
 <div class="step-grid">
   <div class="step-card">
@@ -1599,7 +1599,7 @@ The Settings page is intentionally small. Most users only need to check the data
 
 <h2 id="saving-settings">Saving settings<a class="headerlink" href="#saving-settings" title="Permanent link">&para;</a></h2>
 <p>Settings and City Resolver show whether changes are saved. <strong>Save changes</strong> saves the values present when you click it. If you keep editing during a save, those later edits stay pending for another save. Leaving an editor with unsaved changes asks for confirmation.</p>
-<p>The save bar stays available as you scroll. Settings validates enabled schedules and processing limits before saving; correct the displayed error before trying again.</p>
+<p>The save bar stays available as you scroll. Settings validates enabled schedules and processing limits before saving; correct the displayed error before trying again. Saved expressions that do not fit a preset remain in <strong>Advanced custom schedule</strong>, including invalid values. Invalid enabled schedules must be corrected before saving; they are not automatically clamped to a different schedule.</p>
 <p>The two editors save their own sections, so saving City Resolver does not overwrite processing or schedule changes made elsewhere. <strong>Test Connection</strong> checks the environment-backed database connection without saving settings.</p>
 <p>Saving replaces the settings file only after the new values have been written completely. If a save fails, the previous file remains available. Database credentials stay in the environment.</p>
 <h2 id="photo-previews-and-immich-links">Photo previews and Immich links<a class="headerlink" href="#photo-previews-and-immich-links" title="Permanent link">&para;</a></h2>
