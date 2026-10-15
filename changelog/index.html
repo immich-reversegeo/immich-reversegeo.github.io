@@ -1252,6 +1252,9 @@
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
+<p>Reduce memory use while building Overture country caches, including the first processing pass or a cache refresh. Existing caches and location matching rules stay the same.</p>
+</li>
+<li>
 <p>Lookup now reports an incomplete result when a required country cache cannot be prepared, instead of suggesting that a country-only fallback would be written. Retry after resolving the cache error.</p>
 </li>
 <li>
