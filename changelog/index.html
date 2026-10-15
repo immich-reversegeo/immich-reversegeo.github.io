@@ -1250,6 +1250,14 @@
 <p>This is the public-facing release summary for Immich ReverseGeo.</p>
 <p>Technical implementation notes live in <a href="https://github.com/immich-reversegeo/immich-reversegeo/blob/master/CHANGELOG.md">CHANGELOG.md</a>.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Lookup now reports an incomplete result when a required country cache cannot be prepared, instead of suggesting that a country-only fallback would be written. Retry after resolving the cache error.</p>
+</li>
+<li>
+<p>Choose English, local/source names, or a preferred language in Settings. Lookup, correction previews, and processing use available Overture translations, including parent-area names. Older country caches rebuild once to retain alternate names. Existing Immich names stay unchanged until you apply reviewed changes or reprocess them. See <a href="../configuration/#location-name-language">Location name language</a>.</p>
+</li>
+</ul>
 <h2 id="020-2026-10-14">0.2.0 — 2026-10-14<a class="headerlink" href="#020-2026-10-14" title="Permanent link">&para;</a></h2>
 <p>This release adds selected location corrections and guarded undo, resumable scans, clearer reviews, and improved administrative matching.</p>
 <ul>

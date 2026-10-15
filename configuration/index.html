@@ -648,6 +648,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#location-name-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Location name language
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#low-memory-mode" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1363,6 +1374,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#location-name-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Location name language
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#low-memory-mode" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1684,6 +1706,17 @@ The Settings page is intentionally small. Most users only need to check the data
 <p>Enable <strong>Allow point-only airports within 100 m when no city or county is found</strong> under Settings → Processing only if this behavior is useful for your library. It defaults off and also requires airport matching to be enabled.</p>
 <p>The fallback uses the nearest airport represented by a valid point within 100 m. It never replaces a resolved administrative city or county, and mapped boundary matches remain preferred. A point record cannot bypass an available boundary for a same-named airport.</p>
 <p>Proximity does not confirm the photo was taken on airport grounds. A point may be far from the terminal, so some airport photos still will not match. Missing, invalid, and line geometries do not qualify. Test airport and nearby non-airport photos in Lookup first; it labels this result as an unconfirmed point-only proximity fallback. Review proposed corrections in <a href=".././using-the-app/#location-management">Location Management</a> before applying them.</p>
+<h3 id="location-name-language">Location name language<a class="headerlink" href="#location-name-language" title="Permanent link">&para;</a></h3>
+<p>Under <strong>Settings → Processing</strong>, choose <strong>Location name language</strong>:</p>
+<ul>
+<li><strong>English (default)</strong> prefers an available English name, then the source's primary name. Existing settings keep this behavior.</li>
+<li><strong>Local / source name</strong> prefers the primary name supplied by Overture, then English. This can restore names such as <strong>Bayern</strong> instead of <strong>Bavaria</strong>. The primary name is a source choice; multilingual areas do not necessarily have one universally preferred local name.</li>
+<li><strong>Preferred language</strong> lets you search by language name or code, such as French (<code>fr</code>). Suggestions show the main languages. You can still enter a regional or script code manually. It tries your language code, then broader forms of that code, then the primary name, then English. For example, <code>fr-CA</code> tries <code>fr-CA</code>, then <code>fr</code>. Other examples include <code>de</code>, <code>ja</code>, and <code>zh-Hant</code>. The language list does not guarantee translated names; availability varies by place. Save your choice and test known coordinates in Lookup before processing.</li>
+</ul>
+<p>Save the setting, test familiar coordinates in <strong>Lookup</strong>, then use <strong>Location Management → Scan &amp; Review</strong> to compare existing names and apply reviewed changes to selected assets. Changing the language does not rewrite existing Immich metadata. A processing run or preview already in progress keeps its starting settings.</p>
+<p>The preference applies to Overture city and state names, including names obtained from parent areas. Local and preferred-language modes also use available Overture country names for the already resolved country or territory. If none is available, the bundled country name remains. The English default keeps the bundled country name. Country codes and geographic matching do not change.</p>
+<p>Translations depend on the source data. Missing translations fall back independently for each name, so a result can contain more than one language. GADM administrative names, bundled airport names, and optional Nearby Places suggestions keep their existing source naming behavior. The setting does not change the app's interface language or create missing translations.</p>
+<p>Older Overture administrative caches rebuild once when next needed to retain alternate names. The first lookup, preview, or processing request waits for that download. After rebuilding, switching language does not require another download. Cache rebuilding alone does not update Immich metadata.</p>
 <h3 id="low-memory-mode">Low-memory mode<a class="headerlink" href="#low-memory-mode" title="Permanent link">&para;</a></h3>
 <p>Normal mode uses compact boundary storage automatically, with full coordinate precision. No extra setting or cache download is needed for this reduction.</p>
 <p>Enable <strong>Low-memory mode</strong> under Settings → Processing when RAM is limited, then save before starting a new run.</p>
