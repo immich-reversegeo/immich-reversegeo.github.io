@@ -659,6 +659,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#country-cache-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Country cache preparation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#low-memory-mode" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1385,6 +1396,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#country-cache-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Country cache preparation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#low-memory-mode" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1717,6 +1739,10 @@ The Settings page is intentionally small. Most users only need to check the data
 <p>The preference applies to Overture city and state names, including names obtained from parent areas. Local and preferred-language modes also use available Overture country names for the already resolved country or territory. If none is available, the bundled country name remains. The English default keeps the bundled country name. Country codes and geographic matching do not change.</p>
 <p>Translations depend on the source data. Missing translations fall back independently for each name, so a result can contain more than one language. GADM administrative names, bundled airport names, and optional Nearby Places suggestions keep their existing source naming behavior. The setting does not change the app's interface language or create missing translations.</p>
 <p>Older Overture administrative caches rebuild once when next needed to retain alternate names. The first lookup, preview, or processing request waits for that download. After rebuilding, switching language does not require another download. Cache rebuilding alone does not update Immich metadata.</p>
+<h3 id="country-cache-preparation">Country cache preparation<a class="headerlink" href="#country-cache-preparation" title="Permanent link">&para;</a></h3>
+<p>Only one country cache is downloaded and built at a time across Overture and GADM, in every memory mode. Processing, Lookup, and correction scans share this queue. Assets using ready caches can continue while another country waits.</p>
+<p>Open <strong>Country Caches</strong> to see which build is active and which countries are waiting. A single build can still exceed available memory; the queue is not a total RAM cap. Check the active step and any error before changing DuckDB threads or enabling Low-memory mode.</p>
+<p>If an initial download or an incompatible-cache rebuild fails, that country waits five minutes before another request can try again. The error includes the retry time and the original failure. Cancellation does not start this cooldown. Failed refreshes with a usable older Overture cache keep the existing one-hour retry delay. Explicitly deleting/re-downloading a cache clears its cooldown; restarting the app also clears these in-memory delays.</p>
 <h3 id="low-memory-mode">Low-memory mode<a class="headerlink" href="#low-memory-mode" title="Permanent link">&para;</a></h3>
 <p>Normal mode uses compact boundary storage automatically, with full coordinate precision. No extra setting or cache download is needed for this reduction.</p>
 <p>Enable <strong>Low-memory mode</strong> under Settings → Processing when RAM is limited, then save before starting a new run.</p>
