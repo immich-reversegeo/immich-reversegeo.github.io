@@ -1252,6 +1252,9 @@
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
+<p>Reduce memory use when building multilingual country caches by storing shared parent-area translations once. Existing caches rebuild once when next needed. Language switching still reuses downloaded data, and existing Immich names stay unchanged.</p>
+</li>
+<li>
 <p>Country caches now download and build one at a time across Overture and GADM in every memory mode. Failed builds wait five minutes before retrying, avoiding repeated downloads for each waiting photo. Existing ready caches remain usable.</p>
 </li>
 <li>
